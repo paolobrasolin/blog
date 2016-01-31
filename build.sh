@@ -18,7 +18,7 @@ rm -rf ../paolobrasolin.github.io.master
 echo "cleaned up"
 
 #clone `master' branch of the repository using encrypted GH_TOKEN for authentification
-git clone https://${GH_TOKEN}@github.com/paolobrasolin/paolobrasolin.github.io.git ../paolobrasolin.github.io.master
+git clone -b master --single-branch https://${GH_TOKEN}@github.com/paolobrasolin/paolobrasolin.github.io.git ../paolobrasolin.github.io.master
 echo "repo cloned"
 
 # copy generated HTML site to `master' branch
@@ -29,7 +29,7 @@ echo "copied"
 # since repository was cloned in write mode with token auth - we can push there
 cd ../paolobrasolin.github.io.master
 ls
-git checkout master
+#git checkout master
 git config user.email "paolo.brasolin@gmail.com"
 git config user.name "Paolo Brasolin"
 git add -A .
