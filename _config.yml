@@ -12,3 +12,6 @@ github_username:  jekyll
 
 # Build settings
 markdown: kramdown
+
+# See https://github.com/jekyll/jekyll/issues/2938
+exclude: [vendor]
