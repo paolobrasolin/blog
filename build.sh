@@ -28,6 +28,8 @@ echo "copied"
 # commit and push generated content to `master' branch
 # since repository was cloned in write mode with token auth - we can push there
 cd ../paolobrasolin.github.io.master
+ls
+git checkout master
 git config user.email "paolo.brasolin@gmail.com"
 git config user.name "Paolo Brasolin"
 git add -A .
