@@ -14,4 +14,4 @@ github_username:  jekyll
 markdown: kramdown
 
 # See https://github.com/jekyll/jekyll/issues/2938
-exclude: [vendor]
+exclude: [vendor, Gemfile, Gemfile.lock, build.sh]

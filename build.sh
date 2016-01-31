@@ -1,11 +1,5 @@
 #!/bin/bash
 
-# only proceed script when started not by pull request (PR)
-#if [ $TRAVIS_PULL_REQUEST == "true" ]; then
-#  echo "this is PR, exiting"
-#  exit 0
-#fi
-
 # enable error reporting to the console
 set -e
 
@@ -16,7 +10,10 @@ bundle exec jekyll build
 rm -rf ../paolobrasolin.github.io.master
 
 #clone `master' branch of the repository using encrypted GH_TOKEN for authentification
-git clone -b master --single-branch https://${GH_TOKEN}@github.com/paolobrasolin/paolobrasolin.github.io.git ../paolobrasolin.github.io.master
+git clone \
+  -b master --single-branch \
+  https://${GH_TOKEN}@github.com/paolobrasolin/paolobrasolin.github.io.git \
+  ../paolobrasolin.github.io.master
 
 # copy generated HTML site to `master' branch
 cp -R _site/* ../paolobrasolin.github.io.master
