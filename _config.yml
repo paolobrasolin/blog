@@ -13,5 +13,13 @@ github_username:  jekyll
 # Build settings
 markdown: kramdown
 
-# See https://github.com/jekyll/jekyll/issues/2938
+# See https://github.com/jekyll/jekyll/issues/2938 about "vendor"
 exclude: [vendor, Gemfile, Gemfile.lock, build.sh]
+
+gems:
+  - jekyll-asciidoc
+
+asciidoctor:
+  attributes:
+    - hardbreaks!
+

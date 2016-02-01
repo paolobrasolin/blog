@@ -1,0 +1,42 @@
+---
+---
+= Sample Page
+:stem: latexmath
+
+Un moto rettilineo ed uniforme è descritto da una relazione lineare
+tra spazio e tempo.  Ad esempio in stem:[S'] scriveremmo la legge
+
+[stem]
+++++
+x' = x'_0 + v't'
+++++
+
+La più generale trasformazione di coordinate possibile da stem:[S']
+ad stem:[S] è una coppia di funzioni stem:[t'(x,t)] ed stem:[x'(x,t)]
+che esprimono le coordinate in stem:[S'] di un qualsiasi evento nei
+termini delle coordinate che esso ha in stem:[S].  Inserendole nella
+legge di stem:[S'] otteniamo una legge in stem:[S], poiché le variabili
+esplicite sono ora stem:[t] ed stem:[x]:
+
+[stem]
+++++
+x'(x,t) = x'_0 + v't'(x,t)
+++++
+
+Grazie alla Prima Legge sappiamo che anche questa relazione deve
+essere lineare.  Da ciò deduciamo una rozza caratterizzazione delle
+trasformazioni ammissibili: infatti la linearità della legge del moto
+è equivalente alla linearità di entrambi i lati dell'equazione, e
+quindi di entrambe le funzioni che caratterizzano la trasformazione.
+Concretamente, se usiamo lettere greche per denotare delle costanti
+dipendenti solo dalla scelta di stem:[S] ed stem:[S'], la forma più
+generale ammissibile per la trasformazione è
+
+[stem]
+++++
+\begin{cases}
+t' = \tau   + \gamma t + \varepsilon x \\
+x' = \sigma + \alpha t + \delta x	
+\end{cases}
+++++
+
