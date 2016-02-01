@@ -58,3 +58,6 @@ collections:
     output: true
     permalink: /portfolio/:title/
 
+
+# See https://github.com/jekyll/jekyll/issues/2938
+exclude: [vendor, Gemfile, Gemfile.lock, build.sh]
