@@ -1,0 +1,16 @@
+<hr>
+
+{% if page.latex contains 'quicklatex' %}
+<p id="credits">
+  This page uses <a href="http://quicklatex.com/">QuickLaTeX</a>.
+</p>
+{% endif %}
+
+<address>
+  {% case page.lang %}
+    {% when "fr" %} Écris-moi un mot.
+    {% when "it" %} Scrivimi due righe.
+    {% else      %} Drop me a line.
+  {% endcase %}
+  <br><a href="mailto:{{site.author.email}}">{{site.author.email}}</a>
+</address>

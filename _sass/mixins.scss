@@ -1,0 +1,40 @@
+@mixin grid($step-x, $step-y, $thickness, $color) {
+  background-size: $step-x $step-y;
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      $color,
+      $color $thickness / 2,
+      transparent $thickness / 2,
+      transparent $step-x - $thickness / 2,
+      $color $step-x - $thickness / 2,
+      $color $step-x),
+    repeating-linear-gradient(
+      -90deg,
+      $color,
+      $color $thickness / 2,
+      transparent $thickness / 2,
+      transparent $step-x - $thickness / 2,
+      $color $step-x - $thickness / 2,
+      $color $step-x),
+}
+
+@mixin basegrid {
+  @include grid($line-height, $line-height, 2px, violet);
+}
+
+@mixin position($mode, $top, $right, $bottom, $left) {
+  position: $mode;
+  top: $top;
+  right: $right;
+  bottom: $bottom;
+  left: $left;
+}
+
+@mixin crisp-edges {
+  image-rendering: -moz-crisp-edges;         /* Firefox */
+  image-rendering:   -o-crisp-edges;         /* Opera */
+  image-rendering: -webkit-optimize-contrast;/* Webkit (non-standard naming) */
+  image-rendering: crisp-edges;
+  -ms-interpolation-mode: nearest-neighbor;  /* IE (non-standard property) */
+}

@@ -1,17 +1,60 @@
-# Site settings
-title: Your awesome title
-email: your-email@domain.com
-description: > # this means to ignore newlines until "baseurl:"
-  Write an awesome description for your new site here. You can edit this
-  line in _config.yml. It will appear in your document head meta (for
-  Google search results) and in your feed.xml site description.
-baseurl: "" # the subpath of your site, e.g. /blog/
-url: "http://yourdomain.com" # the base hostname & protocol for your site
-twitter_username: jekyllrb
-github_username:  jekyll
+# Custom data
+title:               paolobrasolin.github.io
+url:                 http://paolobrasolin.github.io
+baseurl:             
+author:
+  name:              Paolo Brasolin
+  url:               https://plus.google.com/+PaoloBrasolin
+  email:             paolo.brasolin@gmail.com
+analytics:
+  provider:          google
+  google:
+    object_id:       UA-34703595-2
 
-# Build settings
-markdown: kramdown
+feedless:            true
 
-# See https://github.com/jekyll/jekyll/issues/2938
-exclude: [vendor, Gemfile, Gemfile.lock, build.sh]
+# Assets filenames
+favicon:             glyph.png
+stylesheets:
+  - filename: normalize
+  - filename: main
+
+# Sass
+sass:
+  style: compressed
+  sass_dir: _sass
+
+# HTML compress
+#compress_html:
+
+
+# Markdown conversion
+markdown: redcarpet
+redcarpet:
+  extensions: ["no_intra_emphasis", "strikethrough", "smart"]
+
+# Default metadata
+defaults:
+  -
+    scope:
+      path: ""
+    values:
+      layout: "default"
+  -
+    scope:
+      type: "posts"
+    values:
+      stylesheets:
+        - filename: blog
+
+# posts collection
+permalink: /blog/:title/
+# other collections
+collections:
+  pages:
+    output: true
+    permalink: /:title/
+  folia:
+    output: true
+    permalink: /portfolio/:title/
+

@@ -1,0 +1,123 @@
+---
+---
+
+@import 'parameters';
+@import 'mixins';
+
+/* ---------------------------------------------------------------- HEADINGS */
+/* Diciamo che h4, h5 ed h6 sono proibiti. */
+h1, h2, h3 {
+  font-family: "Noto Serif", sans-serif;
+  font-weight: 300;
+  margin: 2*$lead 0 $lead 0;
+  text-align: left;
+  font-weight: bold;
+}
+
+h1 { font-size: $font-size*4/2; line-height: $lead*4/2; }
+h2 { font-size: $font-size*3/2; line-height: $lead*3/2; }
+h3 { font-size: $font-size*2/2; line-height: $lead*2/2; }
+
+/* -------------------------------------------------------------------- CODE */
+pre, code {
+  font-size: $font-size;
+  line-height: $lead;
+  font-family: Inconsolata, monospace;
+  background-color: white;
+}
+
+code {
+  line-height: 0.5*$lead;
+}
+
+pre {
+  margin: $lead auto;
+}
+
+/* ------------------------------------------------------------------- LINKS */
+a {
+  color: #000;
+}
+
+/* ------------------------------------------------------------------- LISTS */
+
+
+/* --------------------------------------------------------------- EPISTOLAE */
+.posts-list {
+
+.draft {
+  font-weight: lighter!important;
+  color: #888!important;
+}
+
+/*
+ul, ol {
+  list-style-position: inside;
+  padding: 0;
+}
+
+li ul, li ol {
+  margin: 0 2*$lead;
+}
+*/
+dt {margin-left: $lead;}
+dt small { float: right; font-weight: lighter; }
+dd p { margin: 0; }
+dd { clear: right; }
+
+dl, dd {
+  margin-left: 0;
+}
+
+dt+dd { margin-bottom: $lead; }
+dd+dt { margin-top:    $lead; }
+
+}
+
+/* ------------------------------------------------------------- FANCY RULER */
+hr {
+/* sballa il ritmo di 1px, ma tanto ci sono errori di rounding più grossi */
+  margin: 1rem;
+  border: 0;
+  height: 1px;
+  background-image: -webkit-linear-gradient(left,
+                              rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0));
+  background-image:    -moz-linear-gradient(left,
+                              rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0));
+  background-image:     -ms-linear-gradient(left,
+                              rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0));
+  background-image:      -o-linear-gradient(left,
+                              rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0));
+}
+
+/* ------------------------------------------------------------------ FOOTER */
+address {
+  display: block;
+  margin: 3*$lead 0;
+  text-align: center;
+}
+
+#credits{
+  text-align: center;
+  font-size: 5/8*$font-size;
+  margin: -5/8*$lead 0 0 0; /* This is a bit evil */
+}
+
+/* ----------------------------------------------------------------- FIGURES */
+/*
+figure {
+  width: 44rem;
+  margin: 2rem auto;
+}
+
+figure img {
+  display: block;
+  margin: auto;
+}
+*/
+
+.highlight {
+  margin: 0;
+}
+
+/* --------------------------------------------------------------------- EOF */

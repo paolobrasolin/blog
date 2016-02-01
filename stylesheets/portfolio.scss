@@ -1,0 +1,61 @@
+---
+---
+
+@import 'parameters';
+@import 'mixins';
+
+h2 {
+  font-family: Oswald, sans-serif;
+  font-weight: 300;
+  text-align: center;
+  background-color: $black;
+  font-size: 3*$font-size;
+  line-height: 5*$lead;
+  color: $white;
+  margin: 0;
+  margin-bottom: $lead;
+}
+
+.item {
+  width: inherit;
+  margin-bottom: $lead;
+  border-bottom: $lead solid $black;
+}
+
+.pictures {
+  width: inherit;
+  display: flex;
+  flex-flow: row wrap;
+}
+
+@mixin teaser {
+  height: 8*$lead;
+  background-repeat: no-repeat;
+  background-position: center; 
+  background-size: cover; 
+}
+
+.detail {
+  @include crisp-edges;
+  @include teaser;
+  flex-grow: 8;
+}
+
+.panoramic {
+  @include teaser;
+  @include crisp-edges;
+  flex-grow: 5;
+  transition: flex-grow .3s;
+  transition-timing-function: ease-in-out;
+}
+
+.panoramic:hover {
+  flex-grow: 13;
+}
+
+.description {
+  text-align: left;
+  padding: .5*$lead;
+  margin: 0;
+}
+

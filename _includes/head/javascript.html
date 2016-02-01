@@ -1,0 +1,23 @@
+{% if page.latex %}
+
+  <script type="text/javascript"
+          src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+
+  {% if page.latex contains 'mathjax' %}
+    {% include latex/mathjax.html %}
+  {% endif %}
+
+  {% if page.latex contains 'katex' %}
+    {% include latex/katex.html %}
+  {% endif %}
+
+  {% if page.latex contains 'quicklatex' %}
+    {% include latex/quicklatex.html %}
+  {% endif %}
+
+{% endif %}
+
+
+{% if site.analytics %}
+  {% include analytics/{{site.analytics.provider}} %}
+{% endif %}

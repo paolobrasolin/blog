@@ -1,20 +1,59 @@
-<!DOCTYPE html>
-<html>
+---
+---
 
-  {% include head.html %}
+<!DOCTYPE html>
+<html{% if page.language %} lang="{{page.language}}"{% endif %}>
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    {% if page.redirect %}
+      <meta http-equiv="refresh"
+        content="{{page.redirect.timeout}}; url={{page.redirect.destination}}"/>
+    {% endif %}
+
+    <meta name="author" content="{{site.author.name}}">
+    <title>{{page.title}}</title>
+
+    {% unless site.feedless %}
+    <link rel='alternate' type='application/atom+xml'
+          title='Atom feed for {{site.url}}'
+          href='{{site.baseurl}}/atom.xml'>
+    {% endunless %}
+
+    {% if site.favicon %}
+    <link rel="icon" type="image/png"
+          href="{{site.baseurl}}/assets/{{site.favicon}}">
+    {% endif %}
+
+    {% for sheet in site.stylesheets %}
+    <link rel="stylesheet" type="text/css"
+          href="{{site.baseurl}}/stylesheets/{{sheet.filename}}.css"/>
+    {% endfor %}
+
+    {% for sheet in page.stylesheets %}
+    <link rel="stylesheet" type="text/css"
+          href="{{site.baseurl}}/stylesheets/{{sheet.filename}}.css"/>
+    {% endfor %}
+
+    {% unless page.options contains 'scriptless' %}
+    {% include head/javascript.html %}
+    {% endunless %}
+  </head>
 
   <body>
+    {% unless page.options contains 'headless' %}
+    <header>{% include body/header %}</header>
+    {% endunless %}
 
-    {% include header.html %}
+    {% unless page.options contains 'mainless' %}
+    <main>{% include body/main %}</main>
+    {% endunless %}
 
-    <div class="page-content">
-      <div class="wrapper">
-        {{ content }}
-      </div>
-    </div>
-
-    {% include footer.html %}
-
+    {% unless page.options contains 'footless' %}
+    <footer>{% include body/footer %}</footer>
+    {% endunless %}
   </body>
 
 </html>
