@@ -13,7 +13,7 @@ git clone \
   ../paolobrasolin.github.io.master
 
 # cleanup
-rm -rf ../paolobrasolin.github.io.master
+rm -rf ../paolobrasolin.github.io.master/*
 
 # copy generated HTML site to `master' branch
 cp -R _site/* ../paolobrasolin.github.io.master
