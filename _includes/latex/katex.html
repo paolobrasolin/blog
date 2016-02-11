@@ -8,20 +8,25 @@ $(document).ready(function() {
     '<script type="math\/tex; mode=display ">'
         +$('#preamble').data('macros')+'<\/script>');
   /* Inline math */
-  $('code').not('pre code').each(function() {
-    var match = /^\$([^\$]*)\$$/.exec($(this).text());
+  /*$('code').not('pre code').each(function() {
+    var match = /^\\\(([^\$]*)\\\)$/.exec($(this).text());
     if(match) {
       katex.render(match[1],$(this).get(0));
       $(this).contents().unwrap();
+    }*/
+  $('p').each(function() {
+    var match = /\\\((.*?)\\\)/.exec($(this).text());
+    if(match) {
+      console.log(match[1]);
     }
   });
   /* Display math */
-  $('.language-tex').parent().parent().each(function() {
+/*  $('.language-tex').parent().parent().each(function() {
     var match = /^\$\$([^\$]*)\$\$$/m.exec($(this).text());
     if(match) {
       katex.render(match[1], $(this).get(0), {displayMode: true});
       $(this).contents().unwrap();
     }
-  });
+  });*/
 });
 </script>

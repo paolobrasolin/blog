@@ -388,7 +388,6 @@ I'll continue another time.
 
 
 
-{% include begin-hidden %}
 
 
 <p class="proof">
@@ -746,4 +745,3 @@ Let `$F$` be an endofunctor on `$C$`.
 An `$F$`-algebra is an object `$A$` together with a morphism `$a:F(A)\rightarrow A$`.
 
 
-{% include end-hidden %}

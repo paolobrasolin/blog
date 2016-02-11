@@ -786,7 +786,6 @@ $$
 
 
 
-{% include begin-hidden %}
 
 ## Moti relativi
 
@@ -942,4 +941,3 @@ $$
 
 
 
-{% include end-hidden %}

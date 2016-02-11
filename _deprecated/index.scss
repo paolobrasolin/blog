@@ -4,6 +4,11 @@
 @import 'parameters';
 @import 'mixins';
 
+$pixel:13px ;
+
+
+
+/*
 nav li:not(.profile) a {
   font-size:   2.5*$font-size;
   line-height: 2.5*$lead;
@@ -23,11 +28,9 @@ nav li:not(.profile) a {
   @include position(absolute, 0, 0, 0, 0);
   margin: auto;
 }
-
 .glyph {
-  @include position(absolute, 0, 0, auto, auto);
+  @include position(absolute, $lead, auto, auto, $lead);
 }
-
 nav {
   width: inherit;
   @include position(absolute, auto, auto, 0, 0);
@@ -46,14 +49,15 @@ ul {
   border-bottom: 0.5*$lead solid $black;
   margin-bottom: 0.5*$lead;
 }
-
+*/
 .profile a {
   background-size: 1.5*$lead 1.5*$lead;
   width: 1.5*$lead;
   height: 1.5*$lead;
   overflow: hidden; 
   color:transparent;
-  float: right;
+  display:inline-block;
+/*  float: right;*/
   margin-left: $lead;
 }
 
@@ -88,24 +92,24 @@ $coordinates:
 ;
 
 /* contenitore della griglia */
-.glyph {
-  width:  8*$lead;
-  height: 8*$lead;
+/*.glyph {
+  width:  8*$pixel;
+  height: 8*$pixel;
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
   align-items: center;
-}
+}*/
 
 /* pixels */
-.glyph > div {
-  width:  0.5*$lead;
-  height: 0.5*$lead;
+/*.glyph > div {
+  width:  0.5*$pixel;
+  height: 0.5*$pixel;
   background-color: $black;
   animation-duration: 0.8s;
   animation-fill-mode: forwards;
   animation-timing-function: ease-in-out;
-}
+}*/
 
 /* ordinamento righe */
 @for $i from 1 through 256 {
@@ -145,9 +149,9 @@ $glyph: 6A 7A 8A 9A AA BA CA C9 C8 C7 C6 C5
 @keyframes pixel {
     0% {background-color: $black;}
    20% {background-color: $black; height: 0;                width: 0;}
-   30% {background-color: $white; height: 0.5*$lead; width: 0;}
-   80% {background-color: $white; height: 0.5*$lead; width: 0;}
-  100% {background-color: $white; height: 0.5*$lead; width: 0.5*$lead;}
+   30% {background-color: $white; height: 0.5*$pixel; width: 0;}
+   80% {background-color: $white; height: 0.5*$pixel; width: 0;}
+  100% {background-color: $white; height: 0.5*$pixel; width: 0.5*$pixel;}
 }
 
 @for $i from 1 through length($glyph) {

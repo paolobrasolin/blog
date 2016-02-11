@@ -1,13 +1,14 @@
 ---
-title: Annotated colophon
-tags: draft
+title: Test title
 language: en
+excerpt: Test excerpt.
 ---
 
+# Test header
 
-How does this website even work?
+Test content.
 
-
+<!--
 ## Tech stack
 
 The raw data reside in a [repo][1] over at [GitHub][2].
@@ -35,3 +36,4 @@ I use three open source web fonts provided by [Google Fonts][ggf]:
 [gg+ rl]:  https://plus.google.com/+RaphLevien/about
 [ggf mer]: https://www.google.com/fonts/specimen/Merriweather
 [gg+ es]:  https://plus.google.com/106288796449831139244/about
+-->

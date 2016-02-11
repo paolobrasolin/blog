@@ -16,7 +16,7 @@ feedless:            true
 # Assets filenames
 favicon:             glyph.png
 stylesheets:
-  - filename: normalize
+  - filename: reset
   - filename: main
 
 # Sass
@@ -61,3 +61,11 @@ collections:
 
 # See https://github.com/jekyll/jekyll/issues/2938
 exclude: [vendor, Gemfile, Gemfile.lock, build.sh]
+
+gems:
+  - jekyll-asciidoc
+
+asciidoctor:
+  attributes:
+    - hardbreaks!
+

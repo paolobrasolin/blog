@@ -43,17 +43,9 @@
   </head>
 
   <body>
-    {% unless page.options contains 'headless' %}
-    <header>{% include body/header %}</header>
-    {% endunless %}
-
-    {% unless page.options contains 'mainless' %}
-    <main>{% include body/main %}</main>
-    {% endunless %}
-
-    {% unless page.options contains 'footless' %}
-    <footer>{% include body/footer %}</footer>
-    {% endunless %}
+    {% unless page.options contains 'headless' %}<header>{% include body/header %}</header>{% endunless %}
+    {% unless page.options contains 'mainless' %}<main>{%   include body/main   %}</main>{%   endunless %}
+    {% unless page.options contains 'footless' %}<footer>{% include body/footer %}</footer>{% endunless %}
   </body>
 
 </html>

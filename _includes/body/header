@@ -1,1 +1,11 @@
 {% include latex/preamble.html %}
+<nav>
+<ul>
+  <li><a href="/" class="glyph button">Home</a>
+  <li><a href="/#blog">Blog</a>
+  <!--<li><s>Portfolio</s>-->
+  <li><a href="/#about">About</a>
+<ul>
+</nav>
+
+

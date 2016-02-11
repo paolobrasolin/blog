@@ -20,7 +20,7 @@
 }
 
 @mixin basegrid {
-  @include grid($line-height, $line-height, 2px, violet);
+  @include grid($lead, $lead, 2px, violet);
 }
 
 @mixin position($mode, $top, $right, $bottom, $left) {
@@ -38,3 +38,50 @@
   image-rendering: crisp-edges;
   -ms-interpolation-mode: nearest-neighbor;  /* IE (non-standard property) */
 }
+
+
+/* fixed for medial g */
+@mixin underlineShadow($color) {
+  text-shadow:
+    .02em 0 $color, -.02em 0 $color,
+    .04em 0 $color, -.04em 0 $color,
+    .08em 0 $color, -.08em 0 $color,
+    .10em 0 $color, -.10em 0 $color,
+    .12em 0 $color, -.12em 0 $color,
+    .14em 0 $color, -.14em 0 $color,
+    .16em 0 $color, -.16em 0 $color;}
+
+/* fixed for terminal y and f */
+@mixin underlineBackground($backgroundColor,$color) {
+background-image:
+  linear-gradient($backgroundColor, $backgroundColor),
+  linear-gradient($backgroundColor, $backgroundColor),
+  linear-gradient($color, $color);
+background-size: .05em 1px, .2em 1px, 1px 1px;
+background-repeat: no-repeat, no-repeat, repeat-x;
+background-position: 0% 85%, 100% 85%, 0% 85%;
+}
+
+@mixin underlined {
+  text-decoration: none;
+  @include underlineShadow(#FFF8FF);
+  @include underlineBackground(#FFF8FF, black);
+  &::selection {text-shadow:none;};
+}
+
+* {
+  &::selection {color:white;background-color:purple;};
+}
+
+
+
+@mixin linear-gradient($parameters...) {
+  background-image: -webkit-linear-gradient($parameters);
+  background-image:    -moz-linear-gradient($parameters);
+  background-image:     -ms-linear-gradient($parameters);
+  background-image:      -o-linear-gradient($parameters);
+}
+
+
+
+
