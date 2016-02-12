@@ -16,7 +16,6 @@ feedless:            true
 # Assets filenames
 favicon:             glyph.png
 stylesheets:
-  - filename: reset
   - filename: main
 
 # Sass

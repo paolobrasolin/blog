@@ -1,12 +1,14 @@
 ---
 ---
 
+@import 'reset';
 @import 'parameters';
 @import 'mixins';
+@import 'cardo';
 
-@import url("http://fonts.googleapis.com/css?family=\
+/*@import url("http://fonts.googleapis.com/css?family=\
 Inconsolata:400,700|\
-Cardo:400,400italic");
+Cardo:400,400italic");*/
 
 html {
   color: #000;
