@@ -1,5 +1,4 @@
 ---
-title: Matrices preserving metrics
 latex: mathjax
 language: en
 macros: |
@@ -20,14 +19,18 @@ macros: |
   \def\sys#1{\left\{\eqs{#1}\right.}
   \def\metric{\eta}
   \def\glnf{\mathrm{GL}_n(\mathbb{F})}
+title: Matrices preserving metrics
+excerpt: >
+  This is an unfinished calculation to parametrize a generalized Lorentz
+  group.
 ---
 
+## Preliminaries
 
-This is just a memo with some boring calculations.
-
-
-Let `$p$`, `$q$` and `$n$` be three nonnegative integers such that `$p+q=n$`.
-Every square matrix `$\nn$` of size `$n$` can be carved into two square blocks `$\pp$` and `$\qq$` sized respectively `$p$` and `$q$`, and two rectangular blocks `$\pq$` and `$\qp$`:
+Let `$p$`, `$q$` and `$n$` be three nonnegative integers such that
+`$p+q=n$`. Every square matrix `$\nn$` of size `$n$` can be carved into
+two square blocks `$\pp$` and `$\qq$`, sized respectively `$p$` and `$q$`,
+and two rectangular blocks `$\pq$` and `$\qp$`:
 
 ``` tex
 $$ \nn = \mat{\pp}{\pq}{\qp}{\qq} $$
@@ -90,16 +93,16 @@ If both `$\pp$` and `$\qq$` are nonsingular we find four equivalent conditions:
 ``` tex
 $$
 \eqs{
-  \det(M) \det(\i\pp) \det(\i\qq)
-    &= \det(1 - \i\pp   \pq \i\qq   \qp)    \\
-    &= \det(1 -   \pq \i\qq   \qp \i\pp)    \\
-    &= \det(1 - \i\qq   \qp \i\pp   \pq)    \\
-    &= \det(1 -   \qp \i\pp   \pq \i\qq)
+  & \det(M) \det(\i\pp) \det(\i\qq) \\
+= & \det(1 - \i\pp   \pq \i\qq   \qp) \\
+= & \det(1 -   \pq \i\qq   \qp \i\pp) \\
+= & \det(1 - \i\qq   \qp \i\pp   \pq) \\
+= & \det(1 -   \qp \i\pp   \pq \i\qq) \\
 }
 $$
 ```
 
-The preliminaries are over.
+## Parametrization
 
 Let `$\metric$` be the metric of signature `$(p,q)$`.
 If a matrix `$\nn$` preserves it (i.e. `$\t\nn \metric \nn = \metric$`) its inverse is easily computed as `$\i\nn = \i\metric \t\nn \metric$`.
@@ -176,4 +179,5 @@ $$
 
 At this point I'd say *something something generalized boost*,
 but I haven't found a clever enough way of justifying it.
-Yeah, these calculations weren't completely gratuitous.
+I'll come up with something eventually.
+
