@@ -2,16 +2,25 @@
 title: Elementary properties of simplicial gaskets
 latex: mathjax
 language: en
+excerpt: >
+  Let's consider some geometric characteristics of a straightforward
+  generalization of Sierpiński gaskets! Nothing fancy, just napkin
+  computations.
 ---
 
+# Elementary properties of simplicial gaskets
 
-Let's compute some basic characteristics of straightforwardly generalized Sierpiński gaskets.
-
+Let's consider some geometric characteristics of a straightforward
+generalization of Sierpiński gaskets! Nothing fancy, just napkin
+computations.
 
 Let `$\Delta^n_0$` be the regular `$n$`-simplex of side length `$s$`.
-We define `$\Delta^n_{i+1}$` as the simplicial complex given by `$(n+1)$` half-sized copies of `$\Delta^n_i$`, each one glued to every other by a single vertex not used in previous gluings.
+We define `$\Delta^n_{i+1}$` as the simplicial complex given by `$(n+1)$`
+half-sized copies of `$\Delta^n_i$`, each one glued to every other by
+a single vertex not used in previous gluings.
 
-The number of `$j$`-faces (let `$\delta$` be `$1$` if the condition at subscript holds and `$0$` otherwise):
+The number of `$j$`-faces is (let `$\delta$` be `$1$` if the condition at
+subscript holds and `$0$` otherwise)
 
 ``` tex
 $$ \begin{align}
@@ -25,7 +34,7 @@ $$ \begin{align}
 \end{align} $$
 ```
 
-The Euler characteristic:
+The Euler characteristic is
 
 ``` tex
 $$ \begin{align}
@@ -37,7 +46,7 @@ $$ \begin{align}
 \end{align} $$
 ```
 
-The `$j$`-volume:
+The `$j$`-volume is
 
 ``` tex
 $$ \begin{align}
@@ -47,7 +56,7 @@ $$ \begin{align}
 \end{align} $$
 ```
 
-If `$j>0$` we have
+If `$j>0$` we have a simpler expression:
 
 ``` tex
 $$

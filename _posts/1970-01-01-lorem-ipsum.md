@@ -1,12 +1,12 @@
 ---
-title: Test title
+title: Lorem Ipsum
 language: en
-excerpt: Test excerpt.
+excerpt: This is not a post.
 ---
 
-# Test header
+# Lorem ipsum
 
-Test content.
+This is not a post.
 
 <!--
 ## Tech stack
