@@ -1,5 +1,4 @@
 ---
-title: Duodactyl manipulation
 latex: mathjax
 language: en
 macros: |
@@ -7,14 +6,18 @@ macros: |
   \def\i{\mathbf{i}}
   \def\f{\mathbf{f}}
   \def\mat#1#2#3#4{\begin{pmatrix}#1& #2\\ #3& #4\end{pmatrix}}
+title: Duodactyl manipulation
+excerpt: >
+  Two fingers moving on a screen can perform gestures naturally associated
+  with dragging, rotating and zooming. Any gesture univoquely determines a
+  direct similitude of the euclidean plane. Let's see how.
 ---
 
-
-Two fingers moving on a screen univoquely determine the direct similitude of the euclidean plane corresponding to the natural gestures of dragging, rotating and zooming.
-
-
-Let one finger move from point `$ A $` to point `$ B =: A + \i $` and the other one from point `$ X $` to point `$ Y =: X + \f $`.
-Calling `$ \theta $` the counter-clockwise angle between `$ \i $` and `$ \f $` we can factor the similitude into a rotation sandwiched between scalings and translations:
+Say one finger moves from point `$ A $` to point `$ B =: A + \i $`
+and the other one moves from point `$ X $` to point `$ Y =: X + \f $`.
+Calling `$ \theta $` the counter-clockwise angle between `$ \i $` and
+`$ \f $` we can factor the similitude into a rotation sandwiched between
+scalings and translations. The orderes sequence of operations is
 
 ``` tex
 $$\begin{align}
@@ -26,7 +29,7 @@ $$\begin{align}
 \end{align}$$
 ```
 
-Their composition is
+and their composition is
 
 ``` tex
 $$
@@ -55,7 +58,7 @@ $$\begin{align}
 \end{align}$$
 ```
 
-and produce the full trasformation in a  convenient form:
+and produce the full trasformation in a convenient form:
 
 ``` tex
 $$
@@ -63,3 +66,4 @@ $$
             \frac{P-A}{\i\cdot\i} + B
 $$
 ```
+

@@ -4,10 +4,6 @@ language: en
 excerpt: This is not a post.
 ---
 
-# Lorem ipsum
-
-This is not a post.
-
 <!--
 ## Tech stack
 

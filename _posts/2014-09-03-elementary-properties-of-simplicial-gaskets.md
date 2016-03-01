@@ -1,18 +1,12 @@
 ---
-title: Elementary properties of simplicial gaskets
 latex: mathjax
 language: en
+title: Elementary properties of simplicial gaskets
 excerpt: >
   Let's consider some geometric characteristics of a straightforward
   generalization of Sierpiński gaskets! Nothing fancy, just napkin
   computations.
 ---
-
-# Elementary properties of simplicial gaskets
-
-Let's consider some geometric characteristics of a straightforward
-generalization of Sierpiński gaskets! Nothing fancy, just napkin
-computations.
 
 Let `$\Delta^n_0$` be the regular `$n$`-simplex of side length `$s$`.
 We define `$\Delta^n_{i+1}$` as the simplicial complex given by `$(n+1)$`

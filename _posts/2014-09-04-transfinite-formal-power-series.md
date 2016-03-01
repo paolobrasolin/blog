@@ -1,16 +1,11 @@
 ---
-title: Transfinite formal power series
 latex: mathjax
 language: en
+title: Transfinite formal power series
 excerpt: >
   Polynomials are for weaklings and we long for a generalization --
   well, I do. Therefore I've jotted down some thoughts on a lazy afternoon.
 ---
-
-# Transfinite formal power series
-
-Polynomials are for weaklings and we long for a generalization --
-well, I do. Therefore I've jotted down some thoughts on a lazy afternoon.
 
 ## Foundation
 

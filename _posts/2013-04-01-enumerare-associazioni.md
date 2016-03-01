@@ -1,16 +1,11 @@
 ---
-title: Enumerare associazioni
 latex: mathjax
 language: it
+title: Enumerare associazioni
 excerpt: >
   Mi è stato chiesto: in quanti modi un'operazione di arietà arbitraria
   può agire su di un numero finito di elementi? Rispondo.
 ---
-
-# Enumerare associazioni
-
-Mi è stato chiesto: in quanti modi un'operazione di arietà arbitraria
-può agire su di un numero finito di elementi? Rispondo.
 
 Consideriamo un'operazione `$p$`-aria.
 Il numero di modi in cui essa può agire su di un'`$n$`-upla di elementi è

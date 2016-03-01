@@ -6,9 +6,8 @@
 @import 'mixins';
 @import 'cardo';
 
-/*@import url("http://fonts.googleapis.com/css?family=\
-Inconsolata:400,700|\
-Cardo:400,400italic");*/
+@import url("http://fonts.googleapis.com/css?family=\
+Inconsolata:400,700");
 
 html {
   color: #000;
@@ -125,7 +124,7 @@ nav li{
 }
 
 
-h1 + p {
+.excerpt {
   font-style: italic;
 }
 
@@ -144,7 +143,17 @@ hr {
 }
 
 
+.hidden {
+  visibility: hidden;
+  display: none;
+}
 
 
+pre, code {
+  background-color: #EFE8EF;
+  font-family: Inconsolata;
+}
 
-
+pre {
+  padding-left: .5em;
+}

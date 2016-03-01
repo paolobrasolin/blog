@@ -43,8 +43,10 @@ defaults:
     scope:
       type: "posts"
     values:
+      is_post: true
       stylesheets:
         - filename: blog
+
 
 # posts collection
 permalink: /blog/:title/
