@@ -1,7 +1,7 @@
 ---
 ---
 
-@import 'reset';
+@import 'normalize';
 @import 'parameters';
 @import 'mixins';
 @import 'cardo';
@@ -9,81 +9,78 @@
 @import url("http://fonts.googleapis.com/css?family=\
 Inconsolata:400,700");
 
+
+
+
 html {
-  color: #000;
-  background-color: #FFF8FF;
+  font-family: "Cardo", serif;
+  font-size: $font-size;
+  line-height: 1.6em;
+  background-color: $white;
+  color: $black;
 }
 
 body {
-  padding-left: 12.5%; /* 1/8 */
-  padding-right: 7.7%; /* 1/13 */
-  font-size: $font-size;
-  line-height: $lead;
-  font-family: "Cardo", serif;
+  padding-left: 1/8 * 100vw;
+  padding-right: 1/13 * 100vw;
+  padding-bottom: 50vh;
+  max-width: 34rem;
 }
+
+
+
 
 p, dl, hr, main>ul:not(.contact) {
-  max-width: 34em;
   margin-top: 1em;
   margin-bottom: 1em;
 }
 
-h1 {
-  font-weight: 400;
-  font-size: 2.2em;
-  margin-top: 4em;
-  margin-bottom: 1em;
-}
 
-h2 {
-  font-weight: 400;
-  font-size: 1.6em;
-  font-style: italic;
+
+
+h1, h2, h3 {
+  font-weight: normal;
+  line-height: 1.6em;
   margin-top: 3em;
-  margin-bottom: 0em;
+  margin-bottom: 1em;
 }
 
-h3 {
-  font-weight: 400;
-  font-size: 1.2em;
-  font-style: italic;
-  margin-top: 1em;
-  margin-bottom: 0em;
-}
+h2, h3 { font-style: italic; }
 
-strong {
-  font-variant: small-caps;
-}
+h1 { font-size: 2.0rem; }
+h2 { font-size: 1.6rem; }
+h3 { font-size: 1.2rem; }
 
-em {
-  font-style: italic;
-}
+
+
+
+footer { text-align: center; }
+
+ul, ol, dl { padding: 0; }
+
+
+strong { font-variant: small-caps; }
+em { font-style: italic; }
 
 a:not(.button) {
   color: inherit;
   @include underlined;
 }
 
-nav {
-/*  @include position(absolute, 0, auto, auto, 0);*/
-  position: relative;
-  left:-12.5%;
-}
-
-nav ul{
+nav ul {
   display: flex;
   align-items:center;
   flex-direction:row;
 }
 
-
 @media screen and (max-width: 34em) {
-  nav ul {flex-direction:column;}
+  nav ul { flex-direction: column; }
 }
 
-nav li{
+nav li {
   margin: 1em;
   font-size:1.2em;
+  list-style-type: none;
 }
 
 .button {
@@ -98,8 +95,8 @@ nav li{
 .glyph {
   background-image: url("../assets/glyph.png");
   image-rendering: pixelated;
-  width: 4em;
-  height: 4em;
+  width: 64px;
+  height: 64px;
   color: transparent;
 }
 
@@ -114,8 +111,9 @@ nav li{
   margin-left: 1em;
 }
 
-.github            {background-image: url("../assets/github.svg");}
+.github            {background-image: url("../assets/github-square.svg");}
 .tex-stackexchange {background-image: url("../assets/tex-stackexchange.svg");}
+.linkedin          {background-image: url("../assets/linkedin-square.svg");}
 
 .contact {
   display: flex;
@@ -123,6 +121,9 @@ nav li{
   flex-direction:row;
 }
 
+.contact li{
+  list-style-type: none;
+}
 
 .excerpt {
   font-style: italic;
@@ -135,8 +136,8 @@ main>ul:not(.contact) {
 }
 
 hr {
-/* sballa il ritmo di 1px, ma tanto ci sono errori di rounding più grossi */
-  margin: 4rem;
+  margin: 2rem;
+  margin-top: 8rem;
   border: 0;
   height: 1px;
   @include linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0));
@@ -157,3 +158,4 @@ pre, code {
 pre {
   padding-left: .5em;
 }
+

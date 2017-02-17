@@ -6,17 +6,18 @@ options: footless
 <h1 id="about">Hi.</h1>
 
 I'm Paolo.
-I do stuff.
+This is where I write things.
 
 I'd love you to drop me an email:
 <a href="mailto:{{site.author.email}}">paolo.brasolin@gmail.com</a>.
 
-Me, elsewhere:
 <ul class="contact">
 <li><a href="https://github.com/paolobrasolin/"
-       class="github button">Github profile</a>
+       class="github button">Github</a>
+<li><a href="https://www.linkedin.com/in/paolobrasolin"
+       class="linkedin button">LinkedIn</a>
 <li><a href="http://tex.stackexchange.com/users/82186/paolo-brasolin"
-       class="tex-stackexchange button">TeX Stack Exchange profile</a>
+       class="tex-stackexchange button">TeX Stack Exchange</a>
 </ul>
 
 <h1 id="blog">Blog posts</h1>

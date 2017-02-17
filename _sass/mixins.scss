@@ -64,8 +64,8 @@ background-position: 0% 85%, 100% 85%, 0% 85%;
 
 @mixin underlined {
   text-decoration: none;
-  @include underlineShadow(#FFF8FF);
-  @include underlineBackground(#FFF8FF, black);
+  @include underlineShadow($white);
+  @include underlineBackground($white, $black);
   &::selection {text-shadow:none;};
 }
 

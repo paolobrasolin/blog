@@ -23,10 +23,6 @@ sass:
   style: compressed
   sass_dir: _sass
 
-# HTML compress
-#compress_html:
-
-
 # Markdown conversion
 markdown: redcarpet
 redcarpet:
@@ -44,8 +40,6 @@ defaults:
       type: "posts"
     values:
       is_post: true
-      stylesheets:
-        - filename: blog
 
 
 # posts collection
