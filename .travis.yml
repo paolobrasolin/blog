@@ -1,10 +1,13 @@
 language: ruby
-script: "./build.sh"
+install:
+  - source travis/texlive/install
+before_script:
+  - ./travis/gitbot/clone
+script:
+  - bundle install
+  - bundle exec jekyll build
+after_script:
+  - ./travis/gitbot/push
 branches:
   only:
   - jekyll
-rvm:
-- 2.3
-env:
-  global:
-    secure: BhFeW5dFOJWO3SPAqt3v7KWMl/ZqWoLtwlXxvO/bgiSX/4BbN0hRglPYbYW0mqcBPuu9xk17QP2JWquURGnRu6wznbxodRR9bxwADEg6p5hAu/pnV3MEUbYZMZYqHY+6Gqjr6/hxqO57X8ZShu1hUVCDDBMoh6r8aK/hesfllhH3UPKawNijdhX51qrkpL8iVJqBkESD2vgxpxhvmWo6b1AqZP3fawNPSgaZ2CKPytfRwP2nFo6CViHvpx7gKoxPasZxrar2OTkAJ4PDwNgnUMkzUKZZep6TpqP31k2A4y4ggv7ZolbiIJRYRURdagLx72A2bGlQT99oiAn2IGLZsUU7xwPRzSqMuN/GHjXR6MLTprOf/uLjhEZINXdl2o1lPo6jouNpv6C571DLzbmwabyhZAAWwYAPF9887mve/qXdKhA3gEWhThOJEdCdWia8VMyBJEdPpDukkXNmNRTFDPn3WVqK1zcJe9YyhYALQe0DnuLL+l+Tdd2ufJ7WFV73heVWnEmDBZT4p8xOAMHq23Nc9cck2mVkvluiS+Z4aLU3HRru007e9IizSVJp9jKukdtme/k09M33FzaBaYgJvLBfmobvReTiHkVdrEpRJ0RLIt7Kj8ZI/8VJZqflEK9r8EUSUluIKSBS6sNnoZWpGnjhF1ZwslhTX644YsiW9C8=
