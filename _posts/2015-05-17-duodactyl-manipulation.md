@@ -1,11 +1,12 @@
 ---
-latex: mathjax
 language: en
-macros: |
-  \def\norm#1{\left\vert{#1}\right\vert}
-  \def\i{\mathbf{i}}
-  \def\f{\mathbf{f}}
-  \def\mat#1#2#3#4{\begin{pmatrix}#1& #2\\ #3& #4\end{pmatrix}}
+antex:
+  preamble: |
+    \usepackage{mathtools, amssymb}
+    \def\norm#1{\left\vert{#1}\right\vert}
+    \def\i{\mathbf{i}}
+    \def\f{\mathbf{f}}
+    \def\mat#1#2#3#4{\begin{pmatrix}#1& #2\\ #3& #4\end{pmatrix}}
 title: Duodactyl manipulation
 excerpt: >
   Two fingers moving on a screen can perform gestures naturally associated
@@ -13,10 +14,10 @@ excerpt: >
   direct similitude of the euclidean plane. Let's see how.
 ---
 
-Say one finger moves from point `$ A $` to point `$ B =: A + \i $`
-and the other one moves from point `$ X $` to point `$ Y =: X + \f $`.
-Calling `$ \theta $` the counter-clockwise angle between `$ \i $` and
-`$ \f $` we can factor the similitude into a rotation sandwiched between
+Say one finger moves from point $ A $ to point $ B =: A + \i $
+and the other one moves from point $ X $ to point $ Y =: X + \f $.
+Calling $ \theta $ the counter-clockwise angle between $ \i $ and
+$ \f $ we can factor the similitude into a rotation sandwiched between
 scalings and translations. The orderes sequence of operations is
 
 ``` tex
@@ -31,12 +32,10 @@ $$\begin{align}
 
 and their composition is
 
-``` tex
 $$
   P \mapsto \frac{\norm\f}{\norm\i}
             R_\theta(P-A) + B
 $$
-```
 
 Two obviously defined products
 
@@ -60,10 +59,8 @@ $$\begin{align}
 
 and produce the full trasformation in a convenient form:
 
-``` tex
 $$
   P \mapsto \mat{\i\cdot\f}{-\i\times\f}{\i\times\f}{\i\cdot\f}
             \frac{P-A}{\i\cdot\i} + B
 $$
-```
 

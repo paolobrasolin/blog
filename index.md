@@ -6,6 +6,7 @@ options: footless
 <h1 id="about">Hi.</h1>
 
 I'm Paolo.
+
 This is where I write things.
 
 I'd love you to drop me an email:

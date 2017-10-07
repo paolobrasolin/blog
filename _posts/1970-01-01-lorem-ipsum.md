@@ -4,6 +4,21 @@ language: en
 excerpt: This is not a post.
 ---
 
+# anTeX integration
+
+An inline macro \TeX.
+
+Some inline math: $1+1=2$.
+
+{% tex %}
+Some inline math: $1+1=2$.
+{% endtex %}
+
+Some more complex inline math: $\sum^\infty_{i=0}i^{-2}=2$.
+
+Some display math $$1+1=2$$
+
+Some more complex display math: $$\sum^\infty_{i=0}i^{-2}=2$$.
 
 # First level header
 
@@ -16,10 +31,6 @@ Aliquam erat volutpat.  Nunc eleifend leo vitae magna.  In id erat non orci comm
 ### Third level header
 
 Aliquam erat volutpat.  Nunc eleifend leo vitae magna.  In id erat non orci commodo lobortis.  Proin neque massa, cursus ut, gravida ut, lobortis eget, lacus.  Sed diam.  Praesent fermentum tempor tellus.  Nullam tempus.  Mauris ac felis vel velit tristique imperdiet.  Donec at pede.  Etiam vel neque nec dui dignissim bibendum.  Vivamus id enim.  Phasellus neque orci, porta a, aliquet quis, semper a, massa.  Phasellus purus.  Pellentesque tristique imperdiet tortor.  Nam euismod tellus id erat.
-
-
-
-
 
 
 <!--

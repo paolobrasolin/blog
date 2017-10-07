@@ -1,5 +1,4 @@
 ---
-latex: mathjax
 language: en
 title: Elementary properties of simplicial gaskets
 excerpt: >
@@ -8,13 +7,13 @@ excerpt: >
   computations.
 ---
 
-Let `$\Delta^n_0$` be the regular `$n$`-simplex of side length `$s$`.
-We define `$\Delta^n_{i+1}$` as the simplicial complex given by `$(n+1)$`
-half-sized copies of `$\Delta^n_i$`, each one glued to every other by
+Let $\Delta^n_0$ be the regular $n$-simplex of side length $s$.
+We define $\Delta^n_{i+1}$ as the simplicial complex given by $(n+1)$
+half-sized copies of $\Delta^n_i$, each one glued to every other by
 a single vertex not used in previous gluings.
 
-The number of `$j$`-faces is (let `$\delta$` be `$1$` if the condition at
-subscript holds and `$0$` otherwise)
+The number of $j$-faces is (let $\delta$ be $1$ if the condition at
+subscript holds and $0$ otherwise)
 
 ``` tex
 $$ \begin{align}
@@ -40,7 +39,7 @@ $$ \begin{align}
 \end{align} $$
 ```
 
-The `$j$`-volume is
+The $j$-volume is
 
 ``` tex
 $$ \begin{align}
@@ -50,12 +49,10 @@ $$ \begin{align}
 \end{align} $$
 ```
 
-If `$j>0$` we have a simpler expression:
+If $j>0$ we have a simpler expression:
 
-``` tex
 $$
   V_j(\Delta^n_i)
     = (n+1)^i { {n+1} \choose {j+1} }
         \frac{s^j\sqrt{j+1}}{j!\sqrt{2^j}} 2^{-ij}
 $$
-```
