@@ -57,10 +57,10 @@ collections:
 # See https://github.com/jekyll/jekyll/issues/2938
 exclude:
   - .antex-cache/
+  - travis/
   - vendor
   - Gemfile
   - Gemfile.lock
-  - build.sh
 
 plugins:
   - jekyll-asciidoc
