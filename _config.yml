@@ -1,0 +1,28 @@
+title: Paolo Brasolin
+email: paolo.brasolin@gmail.com
+description: This is where i jot down stuff. I am Paolo Brasolin.
+baseurl: ""
+url: "https://paolobrasolin.github.io/"
+
+permalink: none
+
+markdown: kramdown
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+
+plugins:
+  - jekyll-feed
+
+markdown: kramdown
+
+exclude:
+  - README.md
+# Excluded by default:
+#   - Gemfile
+#   - Gemfile.lock
+#   - node_modules
+#   - vendor/bundle/
+#   - vendor/cache/
+#   - vendor/gems/
+#   - vendor/ruby/

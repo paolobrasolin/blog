@@ -1,0 +1,65 @@
+@import "normalize"
+
+@import "variables"
+
+@import "mixins"
+
+@import "rouge-base"
+@import "rouge-theme"
+
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700')
+
+// FUNDAMENTALS
+
+*
+  box-sizing: border-box
+
+body
+  padding: 0
+  margin: 0
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif
+  font-size: 16px
+  line-height: 1.5
+  color: $body-text-color
+
+a
+  color: $body-link-color
+  text-decoration: none
+
+  &:hover
+    text-decoration: underline
+
+body
+  & > header, & > main, & > footer
+    @include large
+      font-size: 1.2rem
+    @include medium
+      font-size: 1.1rem
+    @include small
+      font-size: 0.9rem
+
+// BLACK MAGIC BACKGROUND
+
+html
+  &::before
+    content: ' '
+    position: fixed
+    width: 100%
+    height: 100%
+    top: 0
+    left: 0
+    will-change: transform
+    z-index: -1
+    background-color: $header-bg-color
+    background-image: linear-gradient(120deg, $header-bg-color 40%, $header-bg-color-secondary 40%)
+  & > body
+    & > main
+      background-color: white
+    & > header, & > footer
+      color: white
+      a
+        color: inherit
+
+@import "layout"
+@import "article"
+@import "bcard"

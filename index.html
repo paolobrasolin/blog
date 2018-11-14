@@ -1,0 +1,16 @@
+---
+layout: default
+---
+
+{% for post in site.posts %}
+  <article>
+    <header>
+      <h1>{{ post.title }}</h1>
+      <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date_to_string }}</time>
+    </header>
+    {{ post.excerpt }}
+    <footer>
+      <a href="{{ post.url }}">Read more... ({{ page.content | number_of_words }} words)</a>
+    </footer>
+  </article>
+{% endfor %}

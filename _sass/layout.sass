@@ -1,0 +1,88 @@
+// BODY PADDING
+
+body
+  & > header, & > main, & > footer
+    @include large
+      padding: 0 4rem
+    @include medium
+      padding: 0 2rem
+    @include small
+      padding: 0 1rem
+
+// BODY HEADER/MAIN/FOOTER
+
+body
+  display: grid
+  @include large
+    grid-template-rows: auto minmax(calc(100vh - 4rem), auto) 100vh
+  @include medium
+    grid-template-rows: auto minmax(calc(100vh - 3rem), auto) 100vh
+  @include small
+    grid-template-rows: auto minmax(calc(100vh - 3rem), auto) 100vh
+  grid-template-areas: "header" "main" "footer"
+  & > header
+    grid-area: header
+  & > main
+    grid-area: main
+  & > footer
+    grid-area: footer
+
+// BODY HEADER/FOOTER NAVBARS
+
+body
+  & > header, & > footer
+    & > nav
+      display: grid
+      grid-template-columns: max-content auto max-content
+      @include large
+        grid-template-rows: 4rem
+      @include medium
+        grid-template-rows: 3rem
+      @include small
+        grid-template-rows: 3rem
+      align-items: center
+      a
+        &:first-child
+          grid-column: 1
+        &:last-child
+          grid-column: 3
+
+// BODY HEADER
+
+body > header
+  display: grid
+  grid-template-rows: auto
+  grid-template-areas: "nav"
+  & > nav
+    grid-row: nav
+
+// BODY FOOTER
+
+body > footer
+  display: grid
+  grid-template-rows: auto 1fr 2rem 3fr 2fr 4rem
+  grid-template-areas: "nav" "intro" "gap1" "bcard" "gap2" "glyph"
+  & > nav
+    grid-row: nav
+  & > #intro
+    grid-row: intro
+    align-self: end
+    justify-self: center
+  & > .bcard
+    grid-row: bcard
+    align-self: start
+    justify-self: center
+  & > #glyph
+    grid-row: glyph
+    align-self: start
+    justify-self: center
+    svg
+      display: block
+      height: 1.6rem
+      stroke: lighten($header-bg-color-secondary, 30%)
+
+// VISUAL TWEAKS
+
+body
+  main > :last-child
+    margin-bottom: 62vh
