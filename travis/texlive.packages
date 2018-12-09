@@ -1,0 +1,12 @@
+scheme-minimal
+latex-bin
+dvisvgm
+latexmk
+standalone
+pgf
+graphics
+xcolor
+tools
+mathtools
+amsmath
+amsfonts
