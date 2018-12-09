@@ -8,6 +8,7 @@ ga_tracking_id: UA-34703595-2
 permalink: none
 
 markdown: kramdown
+
 kramdown:
   input: GFM
   syntax_highlighter: rouge
@@ -15,15 +16,8 @@ kramdown:
 plugins:
   - jekyll-feed
 
-markdown: kramdown
-
 exclude:
   - README.md
-# Excluded by default:
-#   - Gemfile
-#   - Gemfile.lock
-#   - node_modules
-#   - vendor/bundle/
-#   - vendor/cache/
-#   - vendor/gems/
-#   - vendor/ruby/
+  - Gemfile
+  - Gemfile.lock
+  - vendor/
