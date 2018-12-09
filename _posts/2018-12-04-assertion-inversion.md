@@ -1,7 +1,8 @@
 ---
-title: Assertion inversion
 mathjax: true
 ---
+
+# Assertion inversion
 
 Ana Ulin published a fascinating blog post listing [things nobody told her about being a software engineer](https://anaulin.org/blog/things-nobody-told-me-about-being-a-software-engineer/).
 One of these left me wondering.

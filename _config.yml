@@ -14,7 +14,18 @@ kramdown:
   syntax_highlighter: rouge
 
 plugins:
+  - jekyll-seo-tag
   - jekyll-feed
+  - jekyll-relative-links
+  - jekyll-default-layout
+  - jekyll-titles-from-headings
+  - jekyll-optional-front-matter
+  - jekyll-sitemap
+
+titles_from_headings:
+  enabled: true
+  strip_title: true
+  collections: true
 
 exclude:
   - README.md
