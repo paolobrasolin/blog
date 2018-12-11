@@ -1,5 +1,9 @@
 ---
 mathjax: true
+antex:
+  preamble:
+    \usepackage{amscd, amsmath}
+    \usepackage{color, adjustbox}
 ---
 
 # Assertion inversion
@@ -35,9 +39,8 @@ In equations, we say a test $(c, a)$ on $P$ is passing when $a\circ P \circ c = 
 
 In diagrams, we say a test $(c, a)$ on $P$ is **passing** (**failing**) when the left (right) diagram commutes:
 
-$$
-  \require{AMScd}
-  \begin{CD}
+{% tex classes: [antex-display] %}
+  $\begin{CD}
     S @< c<< \mathbf{1}\\
     @VPVV @VVtV\\
     S @>>a> \mathbf{2}
@@ -47,21 +50,23 @@ $$
     S @< c<< \mathbf{1}\\
     @VPVV @VVfV\\
     S @>>a> \mathbf{2}
-  \end{CD}
-$$
+  \end{CD}$
+{% endtex %}
 
 Let $\sigma\colon\mathbf{2}\to\mathbf{2}$ be the the **negation**, i.e. the function exchanging *true* and *false*.
 It is an involution and some obvious identities hold: $\sigma\circ\sigma = \mathrm{id}_\mathbf{2}$, $\sigma\circ t=f$ and $\sigma\circ f=t$. We can also write the **inversion** $\bar{a}$ of an assertion $a$ as $\bar{a}=\sigma\circ a$.
 
 It is then a trivial exercise to prove that a test $(c,a)$ passes iff $(c,\bar{a})$ fails:
 
-$$
-  \begin{align}
+{% tex classes: [antex-display--negative] %}
+  \adjustbox{minipage=5cm,cfbox=black 1sp}{
+  \begin{align*}
     a\circ P \circ c &= t \\
     \sigma\circ a\circ P \circ c &= \sigma\circ t \\
     \bar{a}\circ P \circ c &= f \\
-  \end{align}
-$$
+  \end{align*}
+  }
+{% endtex %}
 
 ---
 

@@ -10,3 +10,6 @@ tools
 mathtools
 amsmath
 amsfonts
+adjustbox
+xkeyval
+collectbox
