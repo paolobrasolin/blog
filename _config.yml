@@ -12,6 +12,7 @@ markdown: kramdown
 kramdown:
   input: GFM
   syntax_highlighter: rouge
+  math_engine: null # lets KaTeX parse display math on client side
 
 plugins:
   - jekyll-seo-tag
@@ -33,3 +34,10 @@ exclude:
   - Gemfile.lock
   - vendor/
   - travis/
+
+antex:
+  aliases:
+    # disable most aliases and let KaTeX render simple
+    display_math: false
+    inline_math: false
+    inline_macro: false

@@ -39,7 +39,7 @@ In equations, we say a test $(c, a)$ on $P$ is passing when $a\circ P \circ c = 
 
 In diagrams, we say a test $(c, a)$ on $P$ is **passing** (**failing**) when the left (right) diagram commutes:
 
-{% tex classes: [antex-display] %}
+{% tex classes: [antex, display] %}
   $\begin{CD}
     S @< c<< \mathbf{1}\\
     @VPVV @VVtV\\
@@ -58,15 +58,11 @@ It is an involution and some obvious identities hold: $\sigma\circ\sigma = \math
 
 It is then a trivial exercise to prove that a test $(c,a)$ passes iff $(c,\bar{a})$ fails:
 
-{% tex classes: [antex-display--negative] %}
-  \adjustbox{minipage=5cm,cfbox=black 1sp}{
-  \begin{align*}
-    a\circ P \circ c &= t \\
-    \sigma\circ a\circ P \circ c &= \sigma\circ t \\
-    \bar{a}\circ P \circ c &= f \\
-  \end{align*}
-  }
-{% endtex %}
+$$\begin{aligned}
+  a\circ P \circ c &= t \\
+  \sigma\circ a\circ P \circ c &= \sigma\circ t \\
+  \bar{a}\circ P \circ c &= f \\
+\end{aligned}$$
 
 ---
 
