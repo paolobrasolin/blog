@@ -1,9 +1,8 @@
 ---
 title: Three views of a monad
-published: true
+published: false
 latex: katex
 language: en
-katex:
 katex:
   macros:
     '\id': '\mathrm{id}'
@@ -19,16 +18,9 @@ I once tried ~~proving~~ convincing myself of the equivalence of different monad
 It was unconvincing and extremely tedious, so I gave up pretty soon.
 Now that I have some AGDA under my belt I can have my revenge.
 
-Note that this article is literate AGDA: you can load and execute its source[^source].
+Shout out to [Fosco](https://twitter.com/ququ7) for helping me iron out a few kinks in the proofs.
 
-[^source]: TODO
-
-<!--
-TODO:
-* use levels in definitions to account for more general sizes
-* set precedence of _>>=_ and _>=>_ w/ respect to ∘ in order to remove a few parantheses
-* define `a ● p ● z = ext (λ {x} → cong a (cong-app p (z x)))` to simplify proofs
--->
+Note that this article is literate AGDA: you can load and execute its [sourcecode]({{site.github.blobs_url}}/{{page.path}}).
 
 ```agda
 open import Function
@@ -43,7 +35,7 @@ open Relation.Binary.PropositionalEquality.≡-Reasoning
 
 First things first, what's a monad to a mathematician?
 
-A **monad** in a category $C$ is a functor $M\:C\to C$ together with two natural transformations, the unit $\eta\:\id_C\to M$ and the multiplication $\mu\:M^2\to M$, such that the diagrams expressing associativity and unit laws commute:
+A **monad** $\langle M,\eta,\mu\rangle$ in a category $C$ is a functor $M\:C\to C$ together with two natural transformations, the unit $\eta\:\id_C\to M$ and the multiplication $\mu\:M^2\to M$, such that the diagrams expressing associativity and unit laws commute:
 
 {% tex classes: [antex, display] %}
 \begin{codi}
@@ -395,7 +387,8 @@ f >=> return = f                   -- right unit
 
 Their meaning is finally apparent! This makes `>=>` very compelling.
 
-We could convince ourself we struck gold and define an AGDA type:
+It seems we struck gold, but we're in for a sad surprise.
+Let's define the AGDA type:
 
 ```agda
 record DopeMon (M : Set → Set) : Set₁ where
@@ -411,25 +404,26 @@ record DopeMon (M : Set → Set) : Set₁ where
       → (f >=> g) >=> h ≡ f >=> (g >=> h)
 ```
 
+You can search Haskell lore or work out yourself how to tie the operators together.
+I will just give you the result (omitting `unit` and `return`s for brevity):
 
-```agda
--- -- _>=>_ : {A B C : Set} → (A → M B) → (B → M C) → A → M C
--- -- _>=>_ f g x = mult (fmap g (f x))
--- fmap : {A B : Set} → (A → B) → M A → M B
--- mult : {A : Set} → M (M A) → M A
--- -- fmap f x = (id >=> (unit ∘ f)) x
--- -- mult x = (id >=> id) x
--- -- NOTE: these are the usual definitions but they have an ambiguous domain
--- -- fmap f x = ((const x) >=> (unit ∘ f)) _
--- -- mult x = ((const x) >=> id) _
--- -- _>=>_ : {A B C : Set} → (A → M B) → (B → M C) → A → M C
--- -- _>=>_ m n x = m x >>= n
--- _>>=_ : {A B : Set} → M A → (A → M B) -> M B
--- -- _>>=_ ma f = ((λ _ → ma) >=> f) () -- NOTE: usually one sees this in Haskell
--- -- _>>=_ ma f = (id >=> f) ma -- also typechecks better
+```haskell
+-- MathMon → DopeMon
+(f >=> g) x = mult (fmap g (f x))
+-- DopeMon → MathMon
+fmap f x = ((const x) >=> (return . f)) ()
+mult x = ((const x) >=> id) ()
+-- ProgMon → DopeMon
+(m >=> n) x = m x >>= n
+-- DopeMon → ProgMon
+ma >>= f = ((const ma) >=> f) ()
 ```
 
-Unfortunately if we try to prove its equivalence to `MathMon` or `ProgMon` we come to a hard stop.
+We have all we need, but unfortunately if we try to prove[^dope-mon-types] the equivalence of this definition and the previous two we come to a hard stop.
+
+[^dope-mon-types]:
+    Wanna try it? You will realize that replacing Hakell's unit `()` with an `_` brings some typechecking issues.
+    The simplest solution is replacing `((const x) >=> ?) _` with `(id >=> ?) x`.
 
 `MathMon → DopeMon` and `ProgMon → DopeMon` pose no problem, but
 `DopeMon → ProgMon` and `DopeMon → DopeMon` both have holes which cannot be filled.
@@ -449,16 +443,41 @@ Every monad $\langle M, \eta, \mu\rangle$ over a category $C$ has an associated 
 * composition given by $g\circ_Mf=\mu_Z\circ M(g)\circ f$ for every pair of morphisms $f\:X\to M(Y)$, $g\:Y\to M(Z)$ in $C$;
 * identities given by $\id_X=\eta_X$ for every object $X$ in $C$.
 
-Using our previous definitions for `>=>` and `>>=` we note that
+The Haskell lore above tells us that `f >=> g = mult . fmap g . f` and we can recognize that `>=>` is just the Kleisli composition $\circ_M$ with flipped arguments.
 
-```haskell
-(f >=> g) x = f x >>= g = mult (fmap g (f x))
-```
+In turn, this means the properties we were requiring of `>=>` are the associativity and identity axioms for the composition $\circ_M$ in the category $C_M$. These _do not imply_ the monad laws for $M$!
 
-and immediately recognize that `>=>` really is the Kleisli composition $\circ_M$ with flipped arguments.
+Luckily there's an equivalent characterization of a monad which allows us to both succintly characterize $\circ_M$ and simplify our next proofs.
+
+A **Kleisli triple** $\langle M,\eta,(-)^\star\rangle$ in a category $C$ is the ensemble of
+* a function $M\:\Obj(C)\to\Obj(C)$,
+* a morphism $\eta_X\:X\to M(X)$ for every object $X$ in $C$,
+* a morphism $f^\star\:M(X)\to M(Y)$ for every morphism $f\:X\to Y$ in $C$,
+
+such that
+* $\eta^\star_X=\id_{M(X)}$ for every object $X$ in $C$,
+* $f^\star\circ\eta_X=f$ for every morphism $f\:X\to Y$ in $C$,
+* $(g^\star\circ f)^\star=g^\star\circ f^\star$ for every pair of composable morphisms $f$, $g$ in $C$.
 
 
+To give a monad $\langle M,\eta,\mu\rangle$ is to give a Kleisli triple $\langle M,\eta,(-)^\star\rangle$.
 
+$(-)^\star\:\Hom(X,M(Y))\to\Hom(M(X),M(Y))$ is called the _extension operator_ and it connects the two definitions
+for every morphism $f\:X\to Y$ in $C$ like this
+
+$$
+f^\star=\mu_Y\circ M(f)
+$$
+
+Therefore it allows to succintly rewrite the Kleisli composition for every pair of composable morphisms $f$, $g$ in $C$ as
+
+$$
+g\circ_M f=g^\star\circ f^\star
+$$
+
+With that being said, what is the plan now?
+
+We will define the type of Kleisli triples and endow it with `>=>` and its properties by building and deducing them from the extension operator and its properties:
 
 ```agda
 record KlslMon (M : Set → Set) : Set₁ where
@@ -504,7 +523,13 @@ record KlslMon (M : Set → Set) : Set₁ where
     ∎
 ```
 
-## Aesthetes VS mathematicians
+We are now ready for the last stretch.
+
+Scroll way down for the final remarks.
+
+
+
+## Aesthetes VS everyone
 
 ```agda
 MathMon→KlslMon : {M : Set → Set} → MathMon M → KlslMon M
@@ -628,14 +653,18 @@ KlslMon→MathMon {M}
       ∎
     }
   where
-    -- NOTE: easily guessed by hole filling
     fmap : {A B : Set} → (A → B) → M A → M B
     fmap f = (unit ∘ f) ⋆
     mult : {A : Set} → M (M A) → M A
     mult = id ⋆
 ```
 
-## Aesthetes VS programmers
+Yes, I know that
+
+* `ProgMon→MathMon` and `MathMon→KlslMon` together imply `ProgMon→KlslMon`
+* `KlslMon→MathMon` and `MathMon→ProgMon` together imply `KlslMon→ProgMon`
+
+but we're on a roll..
 
 ```agda
 ProgMon→KlslMon : {M : Set → Set} → ProgMon M → KlslMon M
@@ -684,7 +713,6 @@ ProgMon→KlslMon {M}
     unit : {A : Set} → A -> M A
     unit = return
     _⋆ : {A B : Set} → (A → M B) → (M A → M B)
-    -- _⋆ f x = (x >>= (return ∘ f)) >>= id -- thich can be simplified to...
     _⋆ f x = x >>= f
 
 ```
@@ -732,4 +760,19 @@ KlslMon→ProgMon {M}
     _>>=_ : {A B : Set} → M A → (A → M B) -> M B
     _>>=_ x f = (f ⋆) x
 ```
+
+
+
+
+## Final remarks
+
+Using AGDA is ludicrously empowering.
+
+
+
+
+
+
+
+
 

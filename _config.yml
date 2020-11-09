@@ -34,6 +34,7 @@ exclude:
   - Gemfile.lock
   - vendor/
   - travis/
+  - '*.agdai'
 
 antex:
   aliases:
@@ -41,3 +42,7 @@ antex:
     display_math: false
     inline_math: false
     inline_macro: false
+
+github:
+  blobs_url: https://github.com/paolobrasolin/paolobrasolin.github.io/blob/jekyll
+  
