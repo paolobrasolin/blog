@@ -1,6 +1,6 @@
 ---
 title: Three views of a monad
-published: false
+published: true
 latex: katex
 language: en
 katex:
@@ -14,9 +14,9 @@ antex:
 ---
 
 
-I once tried ~~proving~~ convincing myself of the equivalence of different monad implementations using Haskell and pseudocode.
+I once tried ~~proving~~ convincing myself of the equivalence of different implementations of a monad using Haskell and pseudocode.
 It was unconvincing and extremely tedious, so I gave up pretty soon.
-Now that I have some AGDA under my belt I can have my revenge.
+Now that I have some AGDA under my belt I can have some sweet revenge.
 
 Shout out to [Fosco](https://twitter.com/ququ7) for helping me iron out a few kinks in the proofs.
 
@@ -53,7 +53,7 @@ A **monad** $\langle M,\eta,\mu\rangle$ in a category $C$ is a functor $M\:C\to 
 {% endtex %}
 
 This definition is exhaustive but a little terse.
-Since we need to implement this, it will help to unpack it a little bit.
+We need to implement it, so let's unpack it a little bit.
 
 $M\:C\to C$ needs to be a functor, which means that:
 * it maps each object $X$ in $C$ to an object $M(X)$ in $C$;
@@ -137,9 +137,9 @@ m >>= return = m                          -- right unit
 (m >>= f) >>= g = m >>= (\x -> f x >>= g) -- associativity
 ```
 
-These properties are related to the monad laws wehave seen before.
+These properties are related to the monad laws we have seen before.
 
-We have all we need to define an AGDA type for the programmers' definition of monads:
+We have all we need to define an AGDA type for the programmers' definition of a monad:
 
 ```agda
 record ProgMon (M : Set → Set) : Set₁ where
@@ -162,9 +162,9 @@ record ProgMon (M : Set → Set) : Set₁ where
 
 We expect the two definitions to be equivalent.
 
-To prove we can build a `ProgMon` from a `MathMon` and vice versa, we need to know how to relate `return` and `>>=` with `fmap`, `unit` and `mult`.
+To prove that we can build a `ProgMon` from a `MathMon` and vice versa, we need to know how to relate `return` and `>>=` with `fmap`, `unit` and `mult`.
 
-By either reading around or trying to fill holes in AGDA you'll conclude that
+By either reading around or trying to fill holes in AGDA you'll find out:
 
 ```haskell
 -- return and >>= can be expressed using fmap, unit and mult as follows:
@@ -369,7 +369,7 @@ Haskellers define the `>=>` operator (pronounced _fish_) as
 
 Its type signature makes it more intuitive to use than `>>=`.
 
-Replacing `>>=` we obtain a new monad type class from the old one:
+Replacing `>>=` in the old monad type class we obtain:
 
 ```haskell
 class Monad m where
@@ -387,7 +387,7 @@ f >=> return = f                   -- right unit
 
 Their meaning is finally apparent! This makes `>=>` very compelling.
 
-It seems we struck gold, but we're in for a sad surprise.
+It seems like we struck gold, but we're in for a sad surprise.
 Let's define the AGDA type:
 
 ```agda
@@ -404,7 +404,7 @@ record DopeMon (M : Set → Set) : Set₁ where
       → (f >=> g) >=> h ≡ f >=> (g >=> h)
 ```
 
-You can search Haskell lore or work out yourself how to tie the operators together.
+You can search Haskell lore or work out for yourself how to tie the operators together.
 I will just give you the result (omitting `unit` and `return`s for brevity):
 
 ```haskell
@@ -445,7 +445,7 @@ Every monad $\langle M, \eta, \mu\rangle$ over a category $C$ has an associated 
 
 The Haskell lore above tells us that `f >=> g = mult . fmap g . f` and we can recognize that `>=>` is just the Kleisli composition $\circ_M$ with flipped arguments.
 
-In turn, this means the properties we were requiring of `>=>` are the associativity and identity axioms for the composition $\circ_M$ in the category $C_M$. These _do not imply_ the monad laws for $M$!
+In turn, this means the properties we were requiring of `>=>` are the associativity and identity axioms for the composition $\circ_M$ in the category $C_M$. Those _do not imply_ the monad laws for $M$!
 
 Luckily there's an equivalent characterization of a monad which allows us to both succintly characterize $\circ_M$ and simplify our next proofs.
 
@@ -463,7 +463,7 @@ such that
 To give a monad $\langle M,\eta,\mu\rangle$ is to give a Kleisli triple $\langle M,\eta,(-)^\star\rangle$.
 
 $(-)^\star\:\Hom(X,M(Y))\to\Hom(M(X),M(Y))$ is called the _extension operator_ and it connects the two definitions
-for every morphism $f\:X\to Y$ in $C$ like this
+for every morphism $f\:X\to Y$ in $C$ like so:
 
 $$
 f^\star=\mu_Y\circ M(f)
@@ -766,13 +766,9 @@ KlslMon→ProgMon {M}
 
 ## Final remarks
 
-Using AGDA is ludicrously empowering.
+I embarked on this endeavor because I could not find an exhaustive treatment of the equivalence of the three definitions.
+Having an _executable_ proof which doubles as a reference by spelling out every detail is extremely satisfying to me,
+especially because my initial idea was just to throw together some Haskell pseudocode.
 
-
-
-
-
-
-
-
+Using AGDA is ludicrously empowering! This was my first semi-serious exercise and I loved every part of it.
 
