@@ -422,7 +422,7 @@ ma >>= f = ((const ma) >=> f) ()
 We have all we need, but unfortunately if we try to prove[^dope-mon-types] the equivalence of this definition and the previous two we come to a hard stop.
 
 [^dope-mon-types]:
-    Wanna try it? You will realize that replacing Hakell's unit `()` with an `_` brings some typechecking issues.
+    Wanna try it? You will realize that replacing Haskell's unit `()` with an `_` brings some typechecking issues.
     The simplest solution is replacing `((const x) >=> ?) _` with `(id >=> ?) x`.
 
 `MathMon → DopeMon` and `ProgMon → DopeMon` pose no problem, but
