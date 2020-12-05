@@ -51,7 +51,7 @@ jobs:
         tar -xzf install-tl-unx.tar.gz
         cd install-tl-20* || exit 1
         ./install-tl --portable --profile="$TEXLIVE_PROFILE_PATH"
-        echo "::add-path::$TEXLIVE_INSTALL_PREFIX/bin/x86_64-linux"
+        echo "$TEXLIVE_INSTALL_PREFIX/bin/x86_64-linux" >> $GITHUB_PATH
 
     - name: Install TeXLive packages
       if: steps.cache-texlive.outputs.cache-hit != 'true'
@@ -70,7 +70,7 @@ jobs:
         PATH=$TEXLIVE_INSTALL_PREFIX/bin/x86_64-linux:$PATH
         tlmgr update --self
         tlmgr update --all
-        echo "::add-path::$TEXLIVE_INSTALL_PREFIX/bin/x86_64-linux"
+        echo "$TEXLIVE_INSTALL_PREFIX/bin/x86_64-linux" >> $GITHUB_PATH
 
     - name: Cache anTeX artifacts
       uses: actions/cache@v2
