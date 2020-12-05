@@ -1,6 +1,8 @@
 ---
 title: On diagonal arguments
 published: true
+latex: katex
+language: en
 ---
 
 I'm emotionally bound to diagonal arguments (weird, huh?) because that's how I stumbled upon someone who gestured and made me gaze upon mathematics for the first time.
