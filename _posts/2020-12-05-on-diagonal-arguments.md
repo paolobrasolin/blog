@@ -48,7 +48,7 @@ Hence, $s$ cannot occur in the sequence. $\blacksquare$
 Don't be fooled by the underwhelming simplicity: this result is important.
 Enumerating a set means labeling its elements with natural numbers, so we just proved that no enumeration of $T$ is exhaustive.
 In other terms, the correspondence established by no enumeration can be one-to-one.
-This means that while we know that the set of natural numebers is infinite, we now also know that $T$ is strictly bigger[^cardinality].
+This means that while we know that the set of natural numbers is infinite, we now also know that $T$ is strictly bigger[^cardinality].
 
 [^cardinality]: The notion of _set size_ is made precise by the definition of _cardinality_, which you won't regret looking up.
 
@@ -64,15 +64,15 @@ In 1928, amidst a period of fervent debate on the foundations of mathematics, Da
 [^first-order-logic]: Loosely speaking, a first-order logic is a logic allowing not only propositions (e.g. "Socrates is a man") but also quantification (e.g. "there exists x such that x is a man and x is not Socrates" or "for every x, if x is Socrates then x is a man").
 
 Before answering, the notion of _algorithm_ had to be made precise.
-That was done during the 30s by Alonzo Church with his λ-calculus, and then again by Alan turing with his Turing machines.
+That was done during the 30s by Alonzo Church with his λ-calculus, and then again by Alan Turing with his Turing machines.
 The two notions proved to be equivalent models of computation, and during those years the fields of computation and computability theory theory sprung to life with the contribution of many others, _well before the construction of the first computer_[^predated-pcs].
 
-[^predated-pcs]: Let me emphasize that: the teories of computation and computability with all their theorems about the fundamental limits of computers existed well before the first computer was engineered.
+[^predated-pcs]: Let me emphasize that: the theories of computation and computability with all their theorems about the fundamental limits of computers existed well before the first computer was engineered.
 
 Once the necessary machinery was established, the answer to Hilbert's request was found to be a resounding _no_.
 
 A _Turing machine_ (TM for short) is a box<sup>⚠</sup> which maintains and evolves a state by consuming input.
-When given an input, it can either _halt by acceping_ the input, _halt by rejecting_ the input, or not halt at all by _looping_ forever in an infinite computation.
+When given an input, it can either _halt by accepting_ the input, _halt by rejecting_ the input, or not halt at all by _looping_ forever in an infinite computation.
 
 A _language_ is a collection of inputs that can be fed to a TM.
 A TM is said to _recognize_ a language if it accepts all its inputs, and either rejects or never halts on inputs not in the language.
@@ -91,7 +91,7 @@ If a TM is able to decide $H$ it means that it's able to determine whether any p
 **Theorem.** No Turing machine[^that-depends][^that-really-depends] can decide $H$.
 
 [^that-depends]: Halting problems for simpler computation models are decidable, but we're interested in Turing machines because they are deemed to be universal in the sense implied by the [Church-Turing Thesis](https://plato.stanford.edu/entries/church-turing/).
-[^that-really-depends]: Interestingly, the Halting problem restricted to physical computers can be decided by Turing machines, because the forme have finite memory and the latter can successfully simulate them having infinite memory. It is the general problem which cannot be decided.
+[^that-really-depends]: Interestingly, the Halting problem restricted to physical computers can be decided by Turing machines, because the former have finite memory and the latter can successfully simulate them having infinite memory. It is the general problem which cannot be decided.
 
 _Proof._ 
 Suppose there exists a TM $A$ that decides $H$.
@@ -113,7 +113,7 @@ Hence, $A$ cannot exist. $\blacksquare$
 This proof was also relatively simple to follow.
 But... what does it have to do with the Cantor's diagonal argument?
 
-TMs can be enumerated[^enumerable-tm], so given any pair $M_i$ and $M_j$ we can build a table presenting whether the first halts when given the second is ancoded and fed to it as an input.
+TMs can be enumerated[^enumerable-tm], so given any pair $M_i$ and $M_j$ we can build a table presenting whether the first halts when given the second is encoded and fed to it as an input.
 That is, whether $\langle M_i, \langle M_j\rangle\rangle \in H$ or in other words how $A$ acts on a certain subset of $H$:
 
 [^enumerable-tm]: A Turing machine is mathematically represented by a combination of finite objects; with some effort one can find an encoding to represent it with a finite number of symbols and order them lexicographically to obtain an enumeration. 
@@ -182,7 +182,7 @@ all previous results are instances of the _Fixed point theorem_ Lawvere presente
 [^where-is-diag]: You might be wondering where the _diagonal flavour_ has gone to, in Lawvere's theorem. It's all in the definition of $\phi\colon A\to B^A$ and you'll be able to clearly see how [if you're interested](https://ncatlab.org/nlab/show/Lawvere's+fixed+point+theorem).
 
 It is definitely not a _complex_ result, but understanding it requires a nontrivial amount of math.
-Lucklily, we can ~~butcher~~ rephrase it vaguely enough to feel how it may subsume the previous results:
+Luckily, we can ~~butcher~~ rephrase it vaguely enough to feel how it may subsume the previous results:
 
 > > For any cartesian closed category,
 >
