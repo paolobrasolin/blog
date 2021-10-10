@@ -171,7 +171,7 @@ module Rouge
           )
           goto :open_list
         end
-        rule %r/\p{Graph}+/, Name::Namespace
+        rule %r/\p{Graph}+/, Name::Namespace, :pop!
       end
 
       state :open_list do
