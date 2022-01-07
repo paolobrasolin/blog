@@ -41,12 +41,12 @@ jobs:
           packages-path: ${{ github.workspace }}/.github/texlive.packages
           profile-path: ${{ github.workspace }}/.github/texlive.profile
 
-      - name: Cache anTeX artifacts
-        uses: actions/cache@v2
-        with:
-          path: .antex-cache
-          key: antex-cache-2021
-          restore-keys: antex-cache-
+      # - name: Cache anTeX artifacts
+      #   uses: actions/cache@v2
+      #   with:
+      #     path: .antex-cache
+      #     key: antex-cache-2021
+      #     restore-keys: antex-cache-
 
       - name: Build
         run: bundle exec jekyll build
