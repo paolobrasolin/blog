@@ -15,8 +15,11 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Install system dependencies
-        run: sudo apt-get install -y ghostscript
-        # jekyll-antex -> antex -> dvisvgm -> ghostscript
+        run: |
+          # jekyll-antex -> antex -> dvisvgm -> ghostscript
+          sudo apt-get install -y ghostscript
+          # agda for literate programming
+          sudo apt-get install -y agda agda-stdlib
 
       - name: Setup Ruby
         uses: actions/setup-ruby@v1
