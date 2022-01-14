@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    
+      <script async src="https://www.googletagmanager.com/gtag/js?id=UA-34703595-2"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-34703595-2');
+      </script>
+    
+    <meta charset="UTF-8">
+    <!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Version 1.7 | Paolo Brasolin</title>
+<meta name="generator" content="Jekyll v3.9.0" />
+<meta property="og:title" content="Version 1.7" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="This is where i jot down stuff. I am Paolo Brasolin." />
+<meta property="og:description" content="This is where i jot down stuff. I am Paolo Brasolin." />
+<link rel="canonical" href="https://paolobrasolin.github.io//agda-stdlib-1.7/CHANGELOG.html" />
+<meta property="og:url" content="https://paolobrasolin.github.io//agda-stdlib-1.7/CHANGELOG.html" />
+<meta property="og:site_name" content="Paolo Brasolin" />
+<script type="application/ld+json">
+{"description":"This is where i jot down stuff. I am Paolo Brasolin.","url":"https://paolobrasolin.github.io//agda-stdlib-1.7/CHANGELOG.html","@type":"WebPage","headline":"Version 1.7","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <link rel="stylesheet" href="/assets/css/style.css?v=">
+    <link rel="stylesheet" href="/lagda/Agda.css?v=">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+    <!-- The loading of KaTeX is deferred to speed up page rendering -->
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js" integrity="sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4" crossorigin="anonymous"></script>
+    <!-- To automatically render math in text elements, include the auto-render extension: -->
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js" integrity="sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa" crossorigin="anonymous"
+        onload="renderMathInElement(document.body,{macros:{ '':'', },delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]});"></script>
+
+  </head>
+
+  <body>
+    <header id="header">
+      <nav>
+        <a href="/">Back to index.</a>
+        <a href="#footer">What's this?</a>
+      </nav>
+    </header>
+
+    <main>
+      <article>
+    <p>The library has been tested using Agda 2.6.2.</p>
+
+<h2 id="highlights">Highlights</h2>
+
+<ul>
+  <li>
+    <p>New module for making system calls during type checking, <code class="language-plaintext highlighter-rouge">Reflection.External</code>,
+which re-exports <code class="language-plaintext highlighter-rouge">Agda.Builtin.Reflection.External</code>.</p>
+  </li>
+  <li>
+    <p>New predicate for lists that are enumerations their type in
+<code class="language-plaintext highlighter-rouge">Data.List.Relation.Unary.Enumerates</code>.</p>
+  </li>
+  <li>
+    <p>New weak induction schemes in <code class="language-plaintext highlighter-rouge">Data.Fin.Induction</code> that allows one to avoid
+the complicated use of <code class="language-plaintext highlighter-rouge">Acc</code>/<code class="language-plaintext highlighter-rouge">inject</code>/<code class="language-plaintext highlighter-rouge">raise</code> when proving inductive properties
+over finite sets.</p>
+  </li>
+</ul>
+
+<h2 id="bug-fixes">Bug-fixes</h2>
+
+<ul>
+  <li>
+    <p>Added missing module <code class="language-plaintext highlighter-rouge">Function.Metric</code> which re-exports
+<code class="language-plaintext highlighter-rouge">Function.Metric.(Core/Definitions/Structures/Bundles)</code>. This module was referred
+to in the documentation of its children but until now was not present.</p>
+  </li>
+  <li>
+    <p>Added missing fixity declaration to <code class="language-plaintext highlighter-rouge">_&lt;_</code> in
+<code class="language-plaintext highlighter-rouge">Relation.Binary.Construct.NonStrictToStrict</code>.</p>
+  </li>
+</ul>
+
+<h2 id="non-backwards-compatible-changes">Non-backwards compatible changes</h2>
+
+<h4 id="floating-point-arithmetic">Floating-point arithmetic</h4>
+
+<ul>
+  <li>
+    <p>The functions in <code class="language-plaintext highlighter-rouge">Data.Float.Base</code> were updated following changes upstream,
+in <code class="language-plaintext highlighter-rouge">Agda.Builtin.Float</code>, see <a href="https://github.com/agda/agda/pull/4885">https://github.com/agda/agda/pull/4885</a>.</p>
+  </li>
+  <li>
+    <p>The bitwise binary relations on floating-point numbers (<code class="language-plaintext highlighter-rouge">_&lt;_</code>, <code class="language-plaintext highlighter-rouge">_≈ᵇ_</code>, <code class="language-plaintext highlighter-rouge">_==_</code>)
+have been removed without replacement, as they were deeply unintuitive,
+e.g., <code class="language-plaintext highlighter-rouge">∀ x → x &lt; -x</code>.</p>
+  </li>
+</ul>
+
+<h4 id="reflection">Reflection</h4>
+
+<ul>
+  <li>
+    <p>The representation of reflected syntax in <code class="language-plaintext highlighter-rouge">Reflection.Term</code>,
+<code class="language-plaintext highlighter-rouge">Reflection.Pattern</code>, <code class="language-plaintext highlighter-rouge">Reflection.Argument</code> and
+<code class="language-plaintext highlighter-rouge">Reflection.Argument.Information</code> has been updated to match the new
+representation used in Agda 2.6.2. Specifically, the following
+changes were made:</p>
+
+    <ul>
+      <li>
+        <p>The type of the <code class="language-plaintext highlighter-rouge">var</code> constructor of the <code class="language-plaintext highlighter-rouge">Pattern</code> datatype has
+been changed from <code class="language-plaintext highlighter-rouge">(x : String) → Pattern</code> to <code class="language-plaintext highlighter-rouge">(x : Int) →
+Pattern</code>.</p>
+      </li>
+      <li>
+        <p>The type of the <code class="language-plaintext highlighter-rouge">dot</code> constructor of the <code class="language-plaintext highlighter-rouge">Pattern</code> datatype has
+been changed from <code class="language-plaintext highlighter-rouge">Pattern</code> to <code class="language-plaintext highlighter-rouge">(t : Term) → Pattern</code>.</p>
+      </li>
+      <li>
+        <p>The types of the <code class="language-plaintext highlighter-rouge">clause</code> and <code class="language-plaintext highlighter-rouge">absurd-clause</code> constructors of the
+<code class="language-plaintext highlighter-rouge">Clause</code> datatype now take an extra argument <code class="language-plaintext highlighter-rouge">(tel : Telescope)</code>,
+where <code class="language-plaintext highlighter-rouge">Telescope = List (String × Arg Type)</code>.</p>
+      </li>
+      <li>
+        <p>The following constructors have been added to the <code class="language-plaintext highlighter-rouge">Sort</code> datatype:
+<code class="language-plaintext highlighter-rouge">prop : (t : Term) → Sort</code>, <code class="language-plaintext highlighter-rouge">propLit : (n : Nat) → Sort</code>, and
+<code class="language-plaintext highlighter-rouge">inf : (n : Nat) → Sort</code>.</p>
+      </li>
+      <li>
+        <p>In <code class="language-plaintext highlighter-rouge">Reflection.Argument.Information</code> the function <code class="language-plaintext highlighter-rouge">relevance</code> was
+replaced by <code class="language-plaintext highlighter-rouge">modality</code>.</p>
+      </li>
+      <li>
+        <p>The type of the <code class="language-plaintext highlighter-rouge">arg-info</code> constructor is now
+<code class="language-plaintext highlighter-rouge">(v : Visibility) (m : Modality) → ArgInfo</code>.</p>
+      </li>
+      <li>
+        <p>In <code class="language-plaintext highlighter-rouge">Reflection.Argument</code> (as well as <code class="language-plaintext highlighter-rouge">Reflection</code>) there is a new
+pattern synonym <code class="language-plaintext highlighter-rouge">defaultModality</code>, and the pattern synonyms
+<code class="language-plaintext highlighter-rouge">vArg</code>, <code class="language-plaintext highlighter-rouge">hArg</code> and <code class="language-plaintext highlighter-rouge">iArg</code> have been changed.</p>
+      </li>
+      <li>
+        <p>Two new modules have been added, <code class="language-plaintext highlighter-rouge">Reflection.Argument.Modality</code>
+and <code class="language-plaintext highlighter-rouge">Reflection.Argument.Quantity</code>. The constructors of the types
+<code class="language-plaintext highlighter-rouge">Modality</code> and <code class="language-plaintext highlighter-rouge">Quantity</code> are reexported from <code class="language-plaintext highlighter-rouge">Reflection</code>.</p>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="sized-types">Sized types</h4>
+
+<ul>
+  <li>
+    <p>Sized types are no longer considered safe in Agda 2.6.2. As a
+result, all modules that use <code class="language-plaintext highlighter-rouge">--sized-types</code> no longer have the
+<code class="language-plaintext highlighter-rouge">--safe</code> flag.  For a full list of affected modules, refer to the
+relevant <a href="https://github.com/agda/agda-stdlib/pull/1465/files#diff-e1c0e3196e4cea6ff808f5d2906031a7657130e10181516206647b83c7014584R91-R131.">commit</a></p>
+  </li>
+  <li>
+    <p>In order to maintain the safety of <code class="language-plaintext highlighter-rouge">Data.Nat.Pseudorandom.LCG</code>, the function
+<code class="language-plaintext highlighter-rouge">stream</code> that relies on the newly unsafe <code class="language-plaintext highlighter-rouge">Codata</code> modules has
+been moved to the new module <code class="language-plaintext highlighter-rouge">Data.Nat.Pseudorandom.LCG.Unsafe</code>.</p>
+  </li>
+  <li>In order to maintain the safety of the modules in the <code class="language-plaintext highlighter-rouge">Codata.Musical</code> directory,
+the functions <code class="language-plaintext highlighter-rouge">fromMusical</code> and <code class="language-plaintext highlighter-rouge">toMusical</code> defined in:
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Codata.Musical.Colist
+Codata.Musical.Conat
+Codata.Musical.Cofin
+Codata.Musical.M
+Codata.Musical.Stream
+</code></pre></div>    </div>
+    <p>have been moved to a new module <code class="language-plaintext highlighter-rouge">Codata.Musical.Conversion</code> and renamed to
+<code class="language-plaintext highlighter-rouge">X.fromMusical</code> and <code class="language-plaintext highlighter-rouge">X.toMusical</code> for each of <code class="language-plaintext highlighter-rouge">Codata.Musical.X</code>.</p>
+  </li>
+  <li>In order to maintain the safety of <code class="language-plaintext highlighter-rouge">Data.Container(.Indexed)</code>, the greatest fixpoint
+of containers, <code class="language-plaintext highlighter-rouge">ν</code>, has been moved from <code class="language-plaintext highlighter-rouge">Data.Container(.Indexed)</code> to a new module
+<code class="language-plaintext highlighter-rouge">Data.Container(.Indexed).Fixpoints.Guarded</code> which also re-exports the least fixpoint.</li>
+</ul>
+
+<h4 id="other">Other</h4>
+
+<ul>
+  <li>
+    <p>Replaced existing O(n) implementation of <code class="language-plaintext highlighter-rouge">Data.Nat.Binary.fromℕ</code> with a new O(log n)
+implementation. The old implementation is maintained under <code class="language-plaintext highlighter-rouge">Data.Nat.Binary.fromℕ'</code>
+and proven to be equivalent to the new one.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">Data.Maybe.Base</code> now re-exports the definition of <code class="language-plaintext highlighter-rouge">Maybe</code> given by
+<code class="language-plaintext highlighter-rouge">Agda.Builtin.Maybe</code>. The <code class="language-plaintext highlighter-rouge">Foreign.Haskell</code> modules and definitions
+corresponding to <code class="language-plaintext highlighter-rouge">Maybe</code> have been removed. See the release notes of
+Agda 2.6.2 for more information.</p>
+  </li>
+</ul>
+
+<h2 id="deprecated-modules">Deprecated modules</h2>
+
+<h2 id="deprecated-names">Deprecated names</h2>
+
+<h2 id="new-modules">New modules</h2>
+
+<ul>
+  <li>New module for making system calls during type checking:
+    <pre><code class="language-agda">Reflection.External
+</code></pre>
+  </li>
+  <li>New modules for universes and annotations of reflected syntax:
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Reflection.Universe
+Reflection.Annotated
+Reflection.Annotated.Free
+</code></pre></div>    </div>
+  </li>
+  <li>Added new module for unary relations over sized types now that <code class="language-plaintext highlighter-rouge">Size</code>
+lives in it’s own universe since Agda 2.6.2.
+    <pre><code class="language-agda">Relation.Unary.Sized
+</code></pre>
+  </li>
+  <li>Metrics specialised to co-domains with rational numbers:
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Function.Metric.Rational
+Function.Metric.Rational.Definitions
+Function.Metric.Rational.Structures
+Function.Metric.Rational.Bundles
+</code></pre></div>    </div>
+  </li>
+  <li>Lists that contain every element of a type:
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Data.List.Relation.Unary.Enumerates.Setoid
+Data.List.Relation.Unary.Enumerates.Setoid.Properties
+</code></pre></div>    </div>
+  </li>
+  <li>(Unsafe) sized W type:
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Data.W.Sized
+</code></pre></div>    </div>
+  </li>
+  <li>(Unsafe) container fixpoints:
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Data.Container.Fixpoints.Sized
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h2 id="other-minor-additions">Other minor additions</h2>
+
+<ul>
+  <li>Added new relations to <code class="language-plaintext highlighter-rouge">Data.Fin.Base</code>:
+    <pre><code class="language-agda">_≥_ = ℕ._≥_ on toℕ
+_&gt;_ = ℕ._&gt;_ on toℕ
+</code></pre>
+  </li>
+  <li>Added new proofs to <code class="language-plaintext highlighter-rouge">Data.Fin.Induction</code>:
+    <pre><code class="language-agda">&gt;-wellFounded   : WellFounded {A = Fin n} _&gt;_
+
+&lt;-weakInduction : P zero      → (∀ i → P (inject₁ i) → P (suc i)) → ∀ i → P i
+&gt;-weakInduction : P (fromℕ n) → (∀ i → P (suc i) → P (inject₁ i)) → ∀ i → P i
+</code></pre>
+  </li>
+  <li>Added new proofs to <code class="language-plaintext highlighter-rouge">Relation.Binary.Properties.Setoid</code>:
+    <pre><code class="language-agda">respʳ-flip : _≈_ Respectsʳ (flip _≈_)
+respˡ-flip : _≈_ Respectsˡ (flip _≈_)
+</code></pre>
+  </li>
+  <li>Added new function to <code class="language-plaintext highlighter-rouge">Data.Fin.Base</code>:
+    <pre><code class="language-agda">pinch : Fin n → Fin (suc n) → Fin n
+</code></pre>
+  </li>
+  <li>Added new proofs to <code class="language-plaintext highlighter-rouge">Data.Fin.Properties</code>:
+    <pre><code class="language-agda">pinch-surjective : Surjective _≡_ (pinch i)
+pinch-mono-≤     : (pinch i) Preserves _≤_ ⟶ _≤_
+</code></pre>
+  </li>
+  <li>Added new proofs to <code class="language-plaintext highlighter-rouge">Data.Nat.Binary.Properties</code>:
+    <pre><code class="language-agda">fromℕ≡fromℕ'  : fromℕ ≗ fromℕ'
+toℕ-fromℕ'    : toℕ ∘ fromℕ' ≗ id
+fromℕ'-homo-+ : fromℕ' (m ℕ.+ n) ≡ fromℕ' m + fromℕ' n
+</code></pre>
+  </li>
+  <li>Rewrote proofs in <code class="language-plaintext highlighter-rouge">Data.Nat.Binary.Properties</code> for new implementation of <code class="language-plaintext highlighter-rouge">fromℕ</code>:
+    <pre><code class="language-agda">toℕ-fromℕ    : toℕ ∘ fromℕ ≗ id
+fromℕ-homo-+ : fromℕ (m ℕ.+ n) ≡ fromℕ m + fromℕ n
+</code></pre>
+  </li>
+  <li>Added new proof to <code class="language-plaintext highlighter-rouge">Data.Nat.DivMod</code>:
+    <pre><code class="language-agda">m/n≤m : (m / n) {≢0} ≤ m
+</code></pre>
+  </li>
+  <li>Added new type in <code class="language-plaintext highlighter-rouge">Size</code>:
+    <pre><code class="language-agda">SizedSet ℓ = Size → Set ℓ
+</code></pre>
+  </li>
+</ul>
+
+</article>
+    </main>
+
+    <footer id="footer">
+      <nav>
+        <a href="/">Back to index.</a>
+        <a href="#header">Back to top.</a>
+      </nav>
+      <div id="intro">This is where i jot down stuff. I am</div>
+      <div class="bcard">
+        <div class="bcard__photo"></div>
+        <div class="bcard__brand">Paolo Brasolin</div>
+        <div class="bcard__pitch">Software engineer</div>
+        <div class="bcard__links">
+          <a href="mailto:paolobrasolin@gmail.com">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+          </a>
+          <a href="https://github.com/paolobrasolin/">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+          </a>
+          <a href="https://twitter.com/paolobrasolin">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-twitter"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
+          </a>
+          <a href="https://www.linkedin.com/in/paolobrasolin/">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-linkedin"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+          </a>
+        </div>
+      </div>
+      <div id="glyph">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 8 12">
+          <path fill="none" stroke-linejoin="bevel" stroke-width="1" d="M1 7h6v-6h-6v4h4v-2h-2v8h-2v-2h4"/>
+        </svg>
+      </div>
+    </footer>
+  </body>
+</html>

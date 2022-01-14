@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    
+      <script async src="https://www.googletagmanager.com/gtag/js?id=UA-34703595-2"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-34703595-2');
+      </script>
+    
+    <meta charset="UTF-8">
+    <!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Version 0.13 | Paolo Brasolin</title>
+<meta name="generator" content="Jekyll v3.9.0" />
+<meta property="og:title" content="Version 0.13" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="This is where i jot down stuff. I am Paolo Brasolin." />
+<meta property="og:description" content="This is where i jot down stuff. I am Paolo Brasolin." />
+<link rel="canonical" href="https://paolobrasolin.github.io//agda-stdlib-1.7/CHANGELOG/v0.13.html" />
+<meta property="og:url" content="https://paolobrasolin.github.io//agda-stdlib-1.7/CHANGELOG/v0.13.html" />
+<meta property="og:site_name" content="Paolo Brasolin" />
+<script type="application/ld+json">
+{"description":"This is where i jot down stuff. I am Paolo Brasolin.","url":"https://paolobrasolin.github.io//agda-stdlib-1.7/CHANGELOG/v0.13.html","@type":"WebPage","headline":"Version 0.13","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <link rel="stylesheet" href="/assets/css/style.css?v=">
+    <link rel="stylesheet" href="/lagda/Agda.css?v=">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+    <!-- The loading of KaTeX is deferred to speed up page rendering -->
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js" integrity="sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4" crossorigin="anonymous"></script>
+    <!-- To automatically render math in text elements, include the auto-render extension: -->
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js" integrity="sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa" crossorigin="anonymous"
+        onload="renderMathInElement(document.body,{macros:{ '':'', },delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]});"></script>
+
+  </head>
+
+  <body>
+    <header id="header">
+      <nav>
+        <a href="/">Back to index.</a>
+        <a href="#footer">What's this?</a>
+      </nav>
+    </header>
+
+    <main>
+      <article>
+    <p>The library has been tested using Agda version 2.5.2.</p>
+
+<p>Important changes since 0.12:</p>
+
+<ul>
+  <li>
+    <p>Added the <code class="language-plaintext highlighter-rouge">Selective</code> property in <code class="language-plaintext highlighter-rouge">Algebra.FunctionProperties</code> as
+well as proofs of the selectivity of <code class="language-plaintext highlighter-rouge">min</code> and <code class="language-plaintext highlighter-rouge">max</code> in
+<code class="language-plaintext highlighter-rouge">Data.Nat.Properties</code>.</p>
+  </li>
+  <li>
+    <p>Added <code class="language-plaintext highlighter-rouge">Relation.Binary.Product.StrictLex.×-total₂</code>, an alternative
+(non-degenerative) proof for totality, and renamed <code class="language-plaintext highlighter-rouge">×-total</code> to
+<code class="language-plaintext highlighter-rouge">x-total₁</code> in that module.</p>
+  </li>
+  <li>
+    <p>Added the <code class="language-plaintext highlighter-rouge">length-filter</code> property to <code class="language-plaintext highlighter-rouge">Data.List.Properties</code> (the
+<code class="language-plaintext highlighter-rouge">filter</code> equivalent to the pre-existing <code class="language-plaintext highlighter-rouge">length-gfilter</code>).</p>
+  </li>
+  <li>
+    <p>Added <code class="language-plaintext highlighter-rouge">_≤?_</code> decision procedure for <code class="language-plaintext highlighter-rouge">Data.Fin</code>.</p>
+  </li>
+  <li>
+    <p>Added <code class="language-plaintext highlighter-rouge">allPairs</code> function to <code class="language-plaintext highlighter-rouge">Data.Vec</code>.</p>
+  </li>
+  <li>
+    <p>Added additional properties of <code class="language-plaintext highlighter-rouge">_∈_</code> to <code class="language-plaintext highlighter-rouge">Data.Vec.Properties</code>:
+<code class="language-plaintext highlighter-rouge">∈-map</code>, <code class="language-plaintext highlighter-rouge">∈-++ₗ</code>, <code class="language-plaintext highlighter-rouge">∈-++ᵣ</code>, <code class="language-plaintext highlighter-rouge">∈-allPairs</code>.</p>
+  </li>
+  <li>
+    <p>Added some <code class="language-plaintext highlighter-rouge">zip</code>/<code class="language-plaintext highlighter-rouge">unzip</code>-related properties to
+<code class="language-plaintext highlighter-rouge">Data.Vec.Properties</code>.</p>
+  </li>
+  <li>
+    <p>Added an <code class="language-plaintext highlighter-rouge">All</code> predicate and related properties for <code class="language-plaintext highlighter-rouge">Data.Vec</code> (see
+<code class="language-plaintext highlighter-rouge">Data.Vec.All</code> and <code class="language-plaintext highlighter-rouge">Data.Vec.All.Properties</code>).</p>
+  </li>
+  <li>
+    <p>Added order-theoretic lattices and some related properties in
+<code class="language-plaintext highlighter-rouge">Relation.Binary.Lattice</code> and <code class="language-plaintext highlighter-rouge">Relation.Binary.Properties</code>.</p>
+  </li>
+  <li>
+    <p>Added symmetric and equivalence closures of binary relations in
+<code class="language-plaintext highlighter-rouge">Relation.Binary.SymmetricClosure</code> and
+<code class="language-plaintext highlighter-rouge">Relation.Binary.EquivalenceClosure</code>.</p>
+  </li>
+  <li>
+    <p>Added <code class="language-plaintext highlighter-rouge">Congruent₁</code> and <code class="language-plaintext highlighter-rouge">Congruent₂</code> to <code class="language-plaintext highlighter-rouge">Algebra.FunctionProperties</code>.
+These are aliases for <code class="language-plaintext highlighter-rouge">_Preserves _≈_ ⟶ _≈_</code> and
+<code class="language-plaintext highlighter-rouge">_Preserves₂ _≈_ ⟶ _≈_ ⟶ _≈_</code> from <code class="language-plaintext highlighter-rouge">Relation.Binary.Core</code>.</p>
+  </li>
+  <li>
+    <p>Useful lemmas and properties that were previously in private scope,
+either explicitly or within records, have been made public in several
+<code class="language-plaintext highlighter-rouge">Properties.agda</code> files. These include:</p>
+
+    <pre><code class="language-agda">Data.Bool.Properties
+
+Data.Fin.Properties
+
+Data.Integer.Properties
+Data.Integer.Addition.Properties
+Data.Integer.Multiplication.Properties
+</code></pre>
+  </li>
+</ul>
+
+</article>
+    </main>
+
+    <footer id="footer">
+      <nav>
+        <a href="/">Back to index.</a>
+        <a href="#header">Back to top.</a>
+      </nav>
+      <div id="intro">This is where i jot down stuff. I am</div>
+      <div class="bcard">
+        <div class="bcard__photo"></div>
+        <div class="bcard__brand">Paolo Brasolin</div>
+        <div class="bcard__pitch">Software engineer</div>
+        <div class="bcard__links">
+          <a href="mailto:paolobrasolin@gmail.com">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+          </a>
+          <a href="https://github.com/paolobrasolin/">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+          </a>
+          <a href="https://twitter.com/paolobrasolin">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-twitter"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
+          </a>
+          <a href="https://www.linkedin.com/in/paolobrasolin/">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-linkedin"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+          </a>
+        </div>
+      </div>
+      <div id="glyph">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 8 12">
+          <path fill="none" stroke-linejoin="bevel" stroke-width="1" d="M1 7h6v-6h-6v4h4v-2h-2v8h-2v-2h4"/>
+        </svg>
+      </div>
+    </footer>
+  </body>
+</html>

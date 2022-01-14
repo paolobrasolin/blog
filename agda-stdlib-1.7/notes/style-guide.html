@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    
+      <script async src="https://www.googletagmanager.com/gtag/js?id=UA-34703595-2"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-34703595-2');
+      </script>
+    
+    <meta charset="UTF-8">
+    <!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Style guide for the standard library | Paolo Brasolin</title>
+<meta name="generator" content="Jekyll v3.9.0" />
+<meta property="og:title" content="Style guide for the standard library" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="This is where i jot down stuff. I am Paolo Brasolin." />
+<meta property="og:description" content="This is where i jot down stuff. I am Paolo Brasolin." />
+<link rel="canonical" href="https://paolobrasolin.github.io//agda-stdlib-1.7/notes/style-guide.html" />
+<meta property="og:url" content="https://paolobrasolin.github.io//agda-stdlib-1.7/notes/style-guide.html" />
+<meta property="og:site_name" content="Paolo Brasolin" />
+<script type="application/ld+json">
+{"description":"This is where i jot down stuff. I am Paolo Brasolin.","url":"https://paolobrasolin.github.io//agda-stdlib-1.7/notes/style-guide.html","@type":"WebPage","headline":"Style guide for the standard library","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <link rel="stylesheet" href="/assets/css/style.css?v=">
+    <link rel="stylesheet" href="/lagda/Agda.css?v=">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+    <!-- The loading of KaTeX is deferred to speed up page rendering -->
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js" integrity="sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4" crossorigin="anonymous"></script>
+    <!-- To automatically render math in text elements, include the auto-render extension: -->
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js" integrity="sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa" crossorigin="anonymous"
+        onload="renderMathInElement(document.body,{macros:{ '':'', },delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]});"></script>
+
+  </head>
+
+  <body>
+    <header id="header">
+      <nav>
+        <a href="/">Back to index.</a>
+        <a href="#footer">What's this?</a>
+      </nav>
+    </header>
+
+    <main>
+      <article>
+    <p>This is very much a work-in-progress and is not exhaustive. Furthermore many of
+these are aspirations, and may be violated in certain parts of the library.
+It is hoped that at some point a linter will be developed for Agda which will
+automate most of this.</p>
+
+<h2 id="file-structure">File structure</h2>
+
+<ul>
+  <li>The standard library uses a standard line length of 72 characters. Please
+try to stay within this limit. Having said that this is the most violated
+rule in the style-guide and it is recognised that it is not always possible
+to achieve whilst using meaningful names.</li>
+</ul>
+
+<h4 id="indentation">Indentation</h4>
+
+<ul>
+  <li>
+    <p>The contents of a top-level module should have zero indentation.</p>
+  </li>
+  <li>
+    <p>Every subsequent nested scope should then be indented by an additional
+two spaces.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">where</code> blocks should be indented by two spaces and their contents
+should be aligned with the <code class="language-plaintext highlighter-rouge">where</code>.</p>
+  </li>
+  <li>If the type of a term does not fit on one line then the subsequent
+lines of the type should all be aligned with the first character
+of the first line of type, e.g.
+    <pre><code class="language-agda">map-cong₂ : ∀ {a b} {A : Set a} {B : Set b} →
+            ∀ {f g : A → B} {xs} →
+            All (λ x → f x ≡ g x) xs → map f xs ≡ map g xs
+</code></pre>
+  </li>
+  <li>As can be seen in the example above, function arrows at line breaks
+should always go at the end of the line rather than the beginning of the
+next line.</li>
+</ul>
+
+<h4 id="empty-lines">Empty lines</h4>
+
+<ul>
+  <li>
+    <p>All module headers and standard term definitions should have a single
+empty line after them.</p>
+  </li>
+  <li>
+    <p>There should be <em>two</em> empty lines between adjacent record or module definitions
+in order to better distinguish the end of the record or module, as they will
+already be using single empty lines between internal definitions.</p>
+  </li>
+  <li>
+    <p>For example:</p>
+    <pre><code class="language-agda">module Test1 where
+
+  def1 : ...
+  def1 = ...
+
+  def2 : ...
+  def2 = ...
+
+
+module Test2 where
+
+  record Record1 : Set where
+    field
+      field1 : ...
+
+    aux1 : ...
+    aux1 = ...
+
+    aux2 : ...
+    aux2 = ...
+
+
+ record Record2 : Set where
+   field
+     field2 : ...
+
+
+ record1 : Record1
+ record1 = { field1 = ... }
+
+ record2 : Record2
+ record2 = { field2 = ... }
+</code></pre>
+  </li>
+</ul>
+
+<h4 id="modules">Modules</h4>
+
+<ul>
+  <li>
+    <p>As a rule of thumb there should only be one named module per file. Anonymous
+modules are fine, but named internal modules should either be opened publicly
+immediately or split out into a separate file.</p>
+  </li>
+  <li>
+    <p>Module parameters should be put on a single line if they fit.</p>
+  </li>
+  <li>Otherwise they should be spread out over multiple lines, each indented by two
+spaces. If they can be grouped logically by line then it is fine to do so,
+otherwise, a line each is probably clearest. The <code class="language-plaintext highlighter-rouge">where</code> keyword should be placed
+on an  additional line of code at the end. For example:
+    <pre><code class="language-agda">module Relation.Binary.Reasoning.Base.Single
+  {a ℓ} {A : Set a} (_∼_ : Rel A ℓ)
+  (refl : Reflexive _∼_) (trans : Transitive _∼_)
+  where
+</code></pre>
+  </li>
+  <li>There should always be a single blank line after a module declaration.</li>
+</ul>
+
+<h4 id="imports">Imports</h4>
+
+<ul>
+  <li>
+    <p>All imports should be placed in a list at the top of the file
+immediately after the module declaration.</p>
+  </li>
+  <li>
+    <p>The list of imports should be declared in alphabetical order.</p>
+  </li>
+  <li>If the module takes parameters that require imports from other files,
+then those imports only may be placed above the module declaration, e.g.
+    <pre><code class="language-agda">open import Algebra using (Ring)
+
+module Algebra.Properties.Ring {a l} (ring : Ring a l) where
+
+      ... other imports
+</code></pre>
+  </li>
+  <li>If it is important that certain names only come into scope later in
+the file then the module should still be imported at the top of the
+file but it can be given a shorter name using the keyword <code class="language-plaintext highlighter-rouge">as</code> and then
+opened later on in the file when needed, e.g.
+    <pre><code class="language-agda">import Data.List.Relation.Binary.Equality.Setoid as SetoidEquality
+...
+...
+open SetoidEquality S
+</code></pre>
+  </li>
+  <li>When using only a few items (i.e. &lt; 5) from a module, it is a good practice to
+enumerate the items that will be used by declaring the import statement
+with the directive <code class="language-plaintext highlighter-rouge">using</code>. This makes the dependencies clearer, e.g.
+    <pre><code class="language-agda">open import Data.Nat.Properties using (+-assoc)
+</code></pre>
+  </li>
+  <li>Re-exporting terms from a module using the <code class="language-plaintext highlighter-rouge">public</code> modifier
+should <em>not</em> be done in the list of imports as it is very hard to spot.
+Instead the best approach is often to rename the import and then open it
+publicly later in the file in a more obvious fashion, e.g.
+    <pre><code class="language-agda">-- Import list
+...
+import Data.Nat.Properties as NatProperties
+...
+
+-- Re-export ring
+open NatProperties public
+  using (+-*-ring)
+</code></pre>
+  </li>
+  <li>If multiple import modifiers are used, then they should occur in the
+following order: <code class="language-plaintext highlighter-rouge">public</code>, <code class="language-plaintext highlighter-rouge">using</code> <code class="language-plaintext highlighter-rouge">renaming</code>, and if <code class="language-plaintext highlighter-rouge">public</code> is used
+then the <code class="language-plaintext highlighter-rouge">using</code> and <code class="language-plaintext highlighter-rouge">renaming</code> modifiers should occur on a separate line.
+For example:
+    <pre><code class="language-agda">open Monoid monoid public
+  using (ε) renaming (_∙_ to _+_)
+</code></pre>
+  </li>
+</ul>
+
+<h4 id="layout-of-data-declarations">Layout of data declarations</h4>
+
+<ul>
+  <li>The <code class="language-plaintext highlighter-rouge">:</code> for each constructor should be aligned.</li>
+</ul>
+
+<h4 id="layout-of-record-declarations">Layout of record declarations</h4>
+
+<ul>
+  <li>
+    <p>The <code class="language-plaintext highlighter-rouge">:</code> for each field should be aligned.</p>
+  </li>
+  <li>
+    <p>If defining multiple records back to back then there should be a double
+empty line between each record.</p>
+  </li>
+</ul>
+
+<h4 id="layout-of-record-instances">Layout of record instances</h4>
+
+<ul>
+  <li>
+    <p>The <code class="language-plaintext highlighter-rouge">record</code> keyword should go on the same line as the rest of the proof.</p>
+  </li>
+  <li>
+    <p>The next line with the first record item should start with a single <code class="language-plaintext highlighter-rouge">{</code>.</p>
+  </li>
+  <li>
+    <p>Every subsequent item of the record should go on its own line starting with
+a <code class="language-plaintext highlighter-rouge">;</code>.</p>
+  </li>
+  <li>
+    <p>The final line should end with <code class="language-plaintext highlighter-rouge">}</code> on its own.</p>
+  </li>
+  <li>
+    <p>The <code class="language-plaintext highlighter-rouge">=</code> signs for each field should be aligned.</p>
+  </li>
+  <li>
+    <p>For example:</p>
+    <pre><code class="language-agda">≤-isPreorder : IsPreorder _≡_ _≤_
+≤-isPreorder = record
+  { isEquivalence = isEquivalence
+  ; reflexive     = ≤-reflexive
+  ; trans         = ≤-trans
+  }
+</code></pre>
+  </li>
+</ul>
+
+<h4 id="layout-of-where-blocks">Layout of <code class="language-plaintext highlighter-rouge">where</code> blocks</h4>
+
+<ul>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">where</code> blocks are preferred rather than the <code class="language-plaintext highlighter-rouge">let</code> construction.</p>
+  </li>
+  <li>
+    <p>The <code class="language-plaintext highlighter-rouge">where</code> keyword should be placed on the line below the main proof,
+indented by two spaces.</p>
+  </li>
+  <li>If the content of the block is non-trivial then types should be
+provided alongside the terms, and all terms should be on lines after
+the <code class="language-plaintext highlighter-rouge">where</code>, e.g.
+    <pre><code class="language-agda">statement : Statement
+statement = proof
+  where
+  proof : Proof
+  proof = some-very-long-proof
+</code></pre>
+  </li>
+  <li>If the content of the block is trivial or is an <code class="language-plaintext highlighter-rouge">open</code> statement then
+it can be provided on the same line as the <code class="language-plaintext highlighter-rouge">where</code> and a type can be
+omitted, e.g.
+    <pre><code class="language-agda">statement : Statement
+statement = proof
+  where proof = x
+</code></pre>
+  </li>
+</ul>
+
+<h4 id="layout-of-equational-reasoning">Layout of equational reasoning</h4>
+
+<ul>
+  <li>
+    <p>The <code class="language-plaintext highlighter-rouge">begin</code> clause should go on the same line as the rest of the proof.</p>
+  </li>
+  <li>
+    <p>Every subsequent combinator <code class="language-plaintext highlighter-rouge">_≡⟨_⟩_</code> should be placed on an additional
+line of code, indented by two spaces.</p>
+  </li>
+  <li>
+    <p>The relation sign (e.g. <code class="language-plaintext highlighter-rouge">≡</code>) for each line should be aligned if possible.</p>
+  </li>
+  <li>For example:
+    <pre><code class="language-agda">+-comm : Commutative _+_
++-comm zero    n = sym (+-identityʳ n)
++-comm (suc m) n = begin
+  suc m + n    ≡⟨⟩
+  suc (m + n)  ≡⟨ cong suc (+-comm m n) ⟩
+  suc (n + m)  ≡⟨ sym (+-suc n m) ⟩
+  n + suc m    ∎
+</code></pre>
+  </li>
+  <li>When multiple reasoning frameworks need to be used in the same file, the
+<code class="language-plaintext highlighter-rouge">open</code> statement should always come in a where clause local to the
+definition. This way users can easily see which reasoning toolkit is
+being used. For instance:
+    <pre><code class="language-agda">foo m n p = begin
+  (...) ∎
+  where open ≤-Reasoning
+</code></pre>
+  </li>
+</ul>
+
+<h4 id="mutual-and-private-blocks">Mutual and private blocks</h4>
+
+<ul>
+  <li>
+    <p>Non-trivial proofs in <code class="language-plaintext highlighter-rouge">private</code> blocks are generally discouraged. If it is
+non-trivial, then chances are that someone will want to reuse it at some
+point!</p>
+  </li>
+  <li>
+    <p>Instead private blocks should only be used to prevent temporary terms and
+records that are defined for convenience from being exported by the module.</p>
+  </li>
+  <li>
+    <p>The mutual block is considered obselete. Please use the standard approach
+of placing the type signatures of the mutually recursive functions before
+their definitions.</p>
+  </li>
+</ul>
+
+<h4 id="function-arguments">Function arguments</h4>
+
+<ul>
+  <li>Function arguments should be aligned between cases where possible, e.g.
+    <pre><code class="language-agda">+-comm : Commutative _+_
++-comm zero    n = ...
++-comm (suc m) n = ...
+</code></pre>
+  </li>
+  <li>If an argument is unused in a case, it may at the author’s
+discretion be replaced by an underscore, e.g.
+    <pre><code class="language-agda">+-assoc : Associative _+_
++-assoc zero    _ _ = refl
++-assoc (suc m) n o = cong suc (+-assoc m n o)
+</code></pre>
+  </li>
+  <li>If it is necessary to refer to an implicit argument in one case then
+the implicit argument brackets must be included in every other case as
+well, e.g.
+    <pre><code class="language-agda">m≤n⇒m∸n≡0 : ∀ {m n} → m ≤ n → m ∸ n ≡ 0
+m≤n⇒m∸n≡0 {n = n} z≤n       = 0∸n≡0 n
+m≤n⇒m∸n≡0 {n = _} (s≤s m≤n) = m≤n⇒m∸n≡0 m≤n
+</code></pre>
+  </li>
+  <li>As of Agda 2.6.0 dot patterns are no longer necessary when unifying
+function arguments and therefore should not be prepended to function
+arguments.</li>
+</ul>
+
+<h4 id="comments">Comments</h4>
+
+<ul>
+  <li>Comments should be placed above a term rather than on the same line, e.g.
+    <pre><code class="language-agda">-- Multiplication of two elements
+_*_ : A → A → A
+_*_ = ...
+</code></pre>
+    <p>rather than:</p>
+    <pre><code class="language-agda">_*_ : A → A → A -- Multiplication of two elements
+_*_ = ...
+</code></pre>
+  </li>
+  <li>Files can be seperated into different logical parts using comments of
+the following style where the header is 72 characters wide:
+    <pre><code class="language-agda">------------------------------------------------------------------------
+-- TITLE
+</code></pre>
+  </li>
+</ul>
+
+<h4 id="other">Other</h4>
+
+<ul>
+  <li>The <code class="language-plaintext highlighter-rouge">with</code> syntax is preferred over the use of <code class="language-plaintext highlighter-rouge">case</code> from the <code class="language-plaintext highlighter-rouge">Function</code>
+module.</li>
+</ul>
+
+<h2 id="types">Types</h2>
+
+<h4 id="implicit-and-explicit-arguments">Implicit and explicit arguments</h4>
+
+<ul>
+  <li>
+    <p>Function arguments should be implicit if they can “almost always”
+be inferred. If there are common cases where they cannot be inferred
+then they should be left explicit.</p>
+  </li>
+  <li>
+    <p>If there are lots of implicit arguments that are common to a collection
+of proofs they should be extracted by using an anonymous module.</p>
+  </li>
+</ul>
+
+<h4 id="variables">Variables</h4>
+
+<ul>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">Level</code> and <code class="language-plaintext highlighter-rouge">Set</code>s can always be generalized using the keyword <code class="language-plaintext highlighter-rouge">variable</code>.</p>
+  </li>
+  <li>
+    <p>A file may only declare variables of other types if those types are used
+in the definition of the main type that the file concerns itself with.
+At the moment the policy is <em>not</em> to generalize over any other types to
+minimize the amount of information that users have to keep in their head
+concurrently.</p>
+  </li>
+  <li>
+    <p>Example 1: the main type in <code class="language-plaintext highlighter-rouge">Data.List.Properties</code> is <code class="language-plaintext highlighter-rouge">List A</code> where <code class="language-plaintext highlighter-rouge">A : Set a</code>.
+Therefore it may declare variables over <code class="language-plaintext highlighter-rouge">Level</code>, <code class="language-plaintext highlighter-rouge">Set a</code>, <code class="language-plaintext highlighter-rouge">A</code>, <code class="language-plaintext highlighter-rouge">List A</code>. It may
+not declare variables, for example, over predicates (e.g. <code class="language-plaintext highlighter-rouge">P : Pred A p</code>) as
+predicates are not used in the definition of <code class="language-plaintext highlighter-rouge">List</code>, even though they are used
+in may list functions such as <code class="language-plaintext highlighter-rouge">filter</code>.</p>
+  </li>
+  <li>
+    <p>Example 2: the main type in <code class="language-plaintext highlighter-rouge">Data.List.Relation.Unary.All</code> is <code class="language-plaintext highlighter-rouge">All P xs</code> where
+<code class="language-plaintext highlighter-rouge">A : Set a</code>, <code class="language-plaintext highlighter-rouge">P : Pred A p</code>, <code class="language-plaintext highlighter-rouge">xs : List A</code>. It therefore may declare variables
+over <code class="language-plaintext highlighter-rouge">Level</code>, <code class="language-plaintext highlighter-rouge">Set a</code>, <code class="language-plaintext highlighter-rouge">A</code>, <code class="language-plaintext highlighter-rouge">List A</code>, <code class="language-plaintext highlighter-rouge">Pred A p</code>. It may not declare, for example,
+variables of type <code class="language-plaintext highlighter-rouge">Rel</code> or <code class="language-plaintext highlighter-rouge">Vec</code>.</p>
+  </li>
+</ul>
+
+<h2 id="naming-conventions">Naming conventions</h2>
+
+<ul>
+  <li>
+    <p>Names should be descriptive - i.e. given the name of a proof and the
+module it lives in, then users should be able to make a reasonable
+guess at its meaning.</p>
+  </li>
+  <li>
+    <p>Terms from other modules should only be renamed to avoid name clashes,
+otherwise, all names should be used as defined.</p>
+  </li>
+  <li>
+    <p>Datatype names should be capitalized, being its first letter in uppercase
+and the remaining letters in lowercase.</p>
+  </li>
+  <li>
+    <p>Function names should follow the camelCase naming convention, in which each
+word within a compound word is capitalized except for the first word.</p>
+  </li>
+</ul>
+
+<h4 id="variables-1">Variables</h4>
+
+<ul>
+  <li>
+    <p>Sets are named <code class="language-plaintext highlighter-rouge">A</code>, <code class="language-plaintext highlighter-rouge">B</code>, <code class="language-plaintext highlighter-rouge">C</code> etc.</p>
+  </li>
+  <li>
+    <p>Predicates are named <code class="language-plaintext highlighter-rouge">P</code>, <code class="language-plaintext highlighter-rouge">Q</code>, <code class="language-plaintext highlighter-rouge">R</code> etc.</p>
+  </li>
+  <li>
+    <p>Relations are named either <code class="language-plaintext highlighter-rouge">R</code>, <code class="language-plaintext highlighter-rouge">S</code>, <code class="language-plaintext highlighter-rouge">T</code> in the general case
+or <code class="language-plaintext highlighter-rouge">_≈_</code>/<code class="language-plaintext highlighter-rouge">_∼_</code>/<code class="language-plaintext highlighter-rouge">_≤_</code>/<code class="language-plaintext highlighter-rouge">_&lt;_</code> if they are known to be an
+equivalence/preorder/partial order/strict partial order.</p>
+  </li>
+  <li>
+    <p>Level variables are typically chosen to match the name of the
+relation, e.g. <code class="language-plaintext highlighter-rouge">a</code> for the level of a set <code class="language-plaintext highlighter-rouge">A</code>, <code class="language-plaintext highlighter-rouge">p</code> for a predicate
+<code class="language-plaintext highlighter-rouge">P</code>. By convention the name <code class="language-plaintext highlighter-rouge">0ℓ</code> is preferred over <code class="language-plaintext highlighter-rouge">zero</code> for the
+zeroth level.</p>
+  </li>
+  <li>
+    <p>Natural variables are named <code class="language-plaintext highlighter-rouge">m</code>, <code class="language-plaintext highlighter-rouge">n</code>, <code class="language-plaintext highlighter-rouge">o</code>, … (default <code class="language-plaintext highlighter-rouge">n</code>)</p>
+  </li>
+  <li>
+    <p>Integer variables are named <code class="language-plaintext highlighter-rouge">i</code>, <code class="language-plaintext highlighter-rouge">j</code>, <code class="language-plaintext highlighter-rouge">k</code>, … (default <code class="language-plaintext highlighter-rouge">i</code>)</p>
+  </li>
+  <li>
+    <p>Rational variables are named <code class="language-plaintext highlighter-rouge">p</code>, <code class="language-plaintext highlighter-rouge">q</code>, <code class="language-plaintext highlighter-rouge">r</code>, … (default <code class="language-plaintext highlighter-rouge">p</code>)</p>
+  </li>
+  <li>
+    <p>All other variables tend to be named <code class="language-plaintext highlighter-rouge">x</code>, <code class="language-plaintext highlighter-rouge">y</code>, <code class="language-plaintext highlighter-rouge">z</code>.</p>
+  </li>
+  <li>
+    <p>Collections of elements are usually indicated by appending an <code class="language-plaintext highlighter-rouge">s</code>
+(e.g. if you are naming your variables <code class="language-plaintext highlighter-rouge">x</code> and <code class="language-plaintext highlighter-rouge">y</code> then lists
+should be named <code class="language-plaintext highlighter-rouge">xs</code> and <code class="language-plaintext highlighter-rouge">ys</code>).</p>
+  </li>
+</ul>
+
+<h4 id="preconditions-and-postconditions">Preconditions and postconditions</h4>
+
+<ul>
+  <li>
+    <p>Preconditions should only be included in names of results if
+“important” (mostly a judgment call).</p>
+  </li>
+  <li>
+    <p>Preconditions of results should be prepended to a description
+of the result by using the symbol <code class="language-plaintext highlighter-rouge">⇒</code> in names (e.g. <code class="language-plaintext highlighter-rouge">asym⇒antisym</code>)</p>
+  </li>
+  <li>
+    <p>Preconditions and postconditions should be combined using the symbols
+<code class="language-plaintext highlighter-rouge">∨</code> and <code class="language-plaintext highlighter-rouge">∧</code> (e.g. <code class="language-plaintext highlighter-rouge">m*n≡0⇒m≡0∨n≡0</code>)</p>
+  </li>
+  <li>
+    <p>Try to avoid the need for bracketing, but if necessary use square
+brackets (e.g. <code class="language-plaintext highlighter-rouge">[m∸n]⊓[n∸m]≡0</code>)</p>
+  </li>
+  <li>
+    <p>When naming proofs, the variables should occur in alphabetical order,
+e.g. <code class="language-plaintext highlighter-rouge">m≤n+m</code> rather than <code class="language-plaintext highlighter-rouge">n≤m+n</code>.</p>
+  </li>
+</ul>
+
+<h4 id="operators-and-relations">Operators and relations</h4>
+
+<ul>
+  <li>
+    <p>Concrete operators and relations should be defined using
+<a href="https://agda.readthedocs.io/en/latest/language/mixfix-operators.html">mixfix</a>
+notation where applicable (e.g. <code class="language-plaintext highlighter-rouge">_+_</code>, <code class="language-plaintext highlighter-rouge">_&lt;_</code>)</p>
+  </li>
+  <li>
+    <p>Common properties such as those in rings/orders/equivalences etc.
+have defined abbreviations (e.g. commutativity is shortened to <code class="language-plaintext highlighter-rouge">comm</code>).
+<code class="language-plaintext highlighter-rouge">Data.Nat.Properties</code> is a good place to look for examples.</p>
+  </li>
+  <li>
+    <p>Properties should be prefixed by the relevant operator/relation and
+separated from its name by a hyphen <code class="language-plaintext highlighter-rouge">-</code> (e.g. commutativity of sum
+results in a compositional name <code class="language-plaintext highlighter-rouge">+-comm</code> where <code class="language-plaintext highlighter-rouge">-</code> acts as a separator).</p>
+  </li>
+  <li>
+    <p>If the relevant Unicode characters are available, negated forms of
+relations should be used over the <code class="language-plaintext highlighter-rouge">¬</code> symbol (e.g. <code class="language-plaintext highlighter-rouge">m+n≮n</code> should be
+used instead of <code class="language-plaintext highlighter-rouge">¬m+n&lt;n</code>).</p>
+  </li>
+</ul>
+
+<h4 id="functions-and-relations-over-specific-datatypes">Functions and relations over specific datatypes</h4>
+
+<ul>
+  <li>When defining a new relation <code class="language-plaintext highlighter-rouge">P</code> over a datatype <code class="language-plaintext highlighter-rouge">X</code> in <code class="language-plaintext highlighter-rouge">Data.X.Relation</code> module
+it is often common to  define how to introduce and eliminate that relation
+with respect to various functions. Suppose you have a function <code class="language-plaintext highlighter-rouge">f</code>, then
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">f⁺</code> is a lemma of the form <code class="language-plaintext highlighter-rouge">Precondition -&gt; P(f)</code></li>
+      <li><code class="language-plaintext highlighter-rouge">f⁻</code> is a lemma of the form <code class="language-plaintext highlighter-rouge">P(f) -&gt; Postcondition</code>
+The logic behind the name is that <code class="language-plaintext highlighter-rouge">⁺</code> makes f appear in the conclusion while
+<code class="language-plaintext highlighter-rouge">⁻</code> makes it disappear from the hypothesis.</li>
+    </ul>
+
+    <p>For example in <code class="language-plaintext highlighter-rouge">Data.List.Relation.Binary.Pointwise</code> we have <code class="language-plaintext highlighter-rouge">map⁺</code> to show
+how the <code class="language-plaintext highlighter-rouge">map</code> function may be introduced and <code class="language-plaintext highlighter-rouge">map⁻</code> to show how it may be
+eliminated:</p>
+    <pre><code class="language-agda">map⁺ : Pointwise (λ a b → R (f a) (g b)) as bs → Pointwise R (map f as) (map g bs)
+map⁻ : Pointwise R (map f as) (map g bs) → Pointwise (λ a b → R (f a) (g b)) as bs
+</code></pre>
+  </li>
+</ul>
+
+<h4 id="keywords">Keywords</h4>
+
+<ul>
+  <li>If the name of something clashes with a keyword in Agda, then convention
+is to place angular brackets around the name, e.g. <code class="language-plaintext highlighter-rouge">⟨set⟩</code> and <code class="language-plaintext highlighter-rouge">⟨module⟩</code>.</li>
+</ul>
+
+</article>
+    </main>
+
+    <footer id="footer">
+      <nav>
+        <a href="/">Back to index.</a>
+        <a href="#header">Back to top.</a>
+      </nav>
+      <div id="intro">This is where i jot down stuff. I am</div>
+      <div class="bcard">
+        <div class="bcard__photo"></div>
+        <div class="bcard__brand">Paolo Brasolin</div>
+        <div class="bcard__pitch">Software engineer</div>
+        <div class="bcard__links">
+          <a href="mailto:paolobrasolin@gmail.com">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+          </a>
+          <a href="https://github.com/paolobrasolin/">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+          </a>
+          <a href="https://twitter.com/paolobrasolin">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-twitter"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
+          </a>
+          <a href="https://www.linkedin.com/in/paolobrasolin/">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-linkedin"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+          </a>
+        </div>
+      </div>
+      <div id="glyph">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 8 12">
+          <path fill="none" stroke-linejoin="bevel" stroke-width="1" d="M1 7h6v-6h-6v4h4v-2h-2v8h-2v-2h4"/>
+        </svg>
+      </div>
+    </footer>
+  </body>
+</html>
