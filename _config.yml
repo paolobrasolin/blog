@@ -36,6 +36,7 @@ exclude:
   - travis/
   - "*.agdai"
   - .agda-html
+  - .byebug_history
 
 antex:
   aliases:

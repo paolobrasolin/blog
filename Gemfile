@@ -12,5 +12,6 @@ group :jekyll_plugins do
     gem 'jekyll-optional-front-matter'
     gem 'jekyll-titles-from-headings'
     gem 'jekyll-antex', '~> 0.6.0'
+    gem "jekyll-agda", '~> 0.1.0'
     gem 'jekyll-sitemap'
 end
